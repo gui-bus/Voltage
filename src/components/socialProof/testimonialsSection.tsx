@@ -104,7 +104,7 @@ function TestimonialCard({
       <div className="flex gap-1 mb-6">
         {Array.from({ length: testimonial.rating }).map((_, i) => (
           <StarIcon
-            weight="duotone"
+            weight="fill"
             key={i}
             className="w-4 h-4 fill-amber-400 text-amber-400"
           />
