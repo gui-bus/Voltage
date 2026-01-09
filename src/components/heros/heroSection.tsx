@@ -95,7 +95,7 @@ export function HeroSection() {
       />
 
       <div
-        className="relative z-10 text-center px-5 max-w-5xl mx-auto flex flex-col items-center gap-5 h-screen justify-center"
+        className="relative z-10 text-center px-5 max-w-5xl mx-auto flex flex-col items-center gap-5 h-screen justify-center md:justify-start scale-90 md:pt-16"
         style={{
           opacity,
           transform: `translateY(${textY}px) scale(${scale})`,
@@ -111,7 +111,7 @@ export function HeroSection() {
           draggable={false}
         />
 
-        <h1 className="text-[clamp(3rem,8vw,5rem)] font-semibold tracking-[-0.04em] leading-[0.95] text-white my-8">
+        <h1 className="text-[clamp(3rem,8vw,5rem)] font-semibold tracking-[-0.04em] leading-[0.95] text-white mb-8">
           The Ultimate Indoor
           <br />
           <span className="font-serif italic font-normal text-white">
