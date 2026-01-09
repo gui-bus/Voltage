@@ -1,7 +1,7 @@
 "use client";
 //#region Imports
 import { Button } from "@heroui/react";
-import { ArrowRightIcon } from "@phosphor-icons/react";
+import { ArrowRightIcon, TicketIcon } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -127,7 +127,7 @@ export function HeroSection() {
           <Link href={"/#tickets"}>
             <Button className="w-full max-w-sm mx-auto h-14 text-lg group/button">
               Get Tickets
-              <ArrowRightIcon
+              <TicketIcon
                 size={20}
                 weight="bold"
                 className="ml-2 group-hover/button:translate-x-1 transition-all duration-300"

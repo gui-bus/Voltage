@@ -1,7 +1,12 @@
 "use client";
 //#region Imports
 import { Button, cn } from "@heroui/react";
-import { ArrowRightIcon, List } from "@phosphor-icons/react";
+import {
+  ArrowRightIcon,
+  List,
+  ListIcon,
+  ShoppingCartIcon,
+} from "@phosphor-icons/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -27,14 +32,10 @@ export default function Header() {
     top: {
       y: 0,
       opacity: 1,
-      backdropFilter: "blur(0px)",
-      backgroundColor: "rgba(24,24,24,0)",
     },
     scrolled: {
       y: 0,
       opacity: 1,
-      backdropFilter: "blur(15px)",
-      backgroundColor: "rgba(24,24,24,0.85)",
     },
   };
 
@@ -54,10 +55,11 @@ export default function Header() {
         transition={{ type: "tween", duration: 0.3 }}
         className={cn(
           "fixed top-0 left-1/2 transform -translate-x-1/2 w-full max-w-400 z-50 ",
-          menuOpen && "bg-[#181818]/95!"
+          menuOpen && "bg-[#101010]/95!",
+          scrolled && "bg-[#101010]!"
         )}
       >
-        <div className="flex items-center justify-between px-5 py-4">
+        <div className="flex items-center justify-around px-5 py-4">
           <motion.div
             animate={{ scale: scrolled ? 0.95 : 1 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
@@ -95,7 +97,7 @@ export default function Header() {
               onClick={() => setMenuOpen(!menuOpen)}
               className="text-white focus:outline-none"
             >
-              <List size={28} weight="bold" />
+              <ListIcon size={28} weight="duotone" />
             </button>
           </div>
 
@@ -106,13 +108,13 @@ export default function Header() {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <Button className="min-w-fit px-6 h-10 text-lg group/button relative overflow-hidden">
-                  <span className="relative z-10">Get Tickets</span>
-                  <ArrowRightIcon
+                  <span className="relative z-10">Buy now</span>
+
+                  <ShoppingCartIcon
                     size={20}
                     weight="bold"
                     className="ml-2 transition-transform duration-300 group-hover/button:translate-x-1"
                   />
-                  <span className="absolute inset-0 rounded-lg bg-purple-500 opacity-0 group-hover/button:opacity-30 animate-pulse transition-opacity duration-500"></span>
                 </Button>
               </motion.div>
             </Link>
@@ -126,7 +128,7 @@ export default function Header() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="md:hidden bg-[#181818]/95 backdrop-blur-sm overflow-hidden"
+              className="md:hidden bg-[#101010]/95 backdrop-blur-sm overflow-hidden"
             >
               <div className="flex flex-col px-5 py-4 space-y-4">
                 {links.map((link) => (

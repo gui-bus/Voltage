@@ -1,7 +1,7 @@
 "use client";
 //#region Imports
 import { Button, cn } from "@heroui/react";
-import { CheckIcon, StarIcon } from "@phosphor-icons/react";
+import { CheckIcon, StarIcon, TicketIcon } from "@phosphor-icons/react";
 import type React from "react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 //#endregion
@@ -108,7 +108,6 @@ export function PricingSection() {
                 <>
                   <div className="absolute -inset-px rounded-3xl bg-linear-to-br from-accent/40 via-transparent to-transparent opacity-60 pointer-events-none" />
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 px-5 py-2 rounded-full bg-accent text-accent-foreground text-sm font-medium shadow-lg">
-                    <StarIcon weight="duotone" className="w-4 h-4" />
                     Best Value
                   </div>
                 </>
@@ -187,6 +186,11 @@ export function PricingSection() {
                 )}
                 variant={plan.popular ? "primary" : "secondary"}
               >
+                {plan.popular ? (
+                  <StarIcon weight="duotone" />
+                ) : (
+                  <TicketIcon weight="duotone" />
+                )}{" "}
                 {plan.cta}
               </Button>
             </div>

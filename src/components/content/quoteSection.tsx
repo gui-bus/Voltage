@@ -31,7 +31,7 @@ export default function QuoteSection() {
   return (
     <section
       ref={containerRef}
-      className="relative bg-[#181818] text-white"
+      className="relative bg-[#101010] text-white"
       id="quote"
     >
       <div className="sticky top-0 py-48 flex items-center justify-center">
