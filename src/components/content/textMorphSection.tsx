@@ -32,7 +32,7 @@ export default function TextMorphSection() {
       className="relative h-[500vh] w-full mx-auto"
       id="offer"
     >
-      <div className="sticky top-0 h-screen w-[80vw] mx-auto flex items-center justify-center overflow-hidden">
+      <div className="sticky top-0 h-screen w-full max-w-7xl mx-auto flex items-center justify-center overflow-hidden">
         <div className="relative flex flex-col items-center justify-center text-center w-full h-full px-6">
           <p className="font-mono text-xs tracking-[0.3em] uppercase text-muted-foreground mb-10">
             The Voltage Experience
