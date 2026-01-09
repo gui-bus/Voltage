@@ -28,10 +28,10 @@ export default function MaskRevealSection() {
   return (
     <section
       ref={containerRef}
-      className="relative h-screen overflow-hidden"
+      className="relative overflow-hidden"
       id="visual"
     >
-      <div className="sticky top-0 h-screen flex items-center justify-center">
+      <div className="sticky py-64 top-0 flex items-center justify-center">
         <motion.div
           style={{
             WebkitMaskImage: maskImage,

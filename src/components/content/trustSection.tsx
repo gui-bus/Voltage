@@ -49,7 +49,7 @@ export function TrustSection() {
   return (
     <section
       ref={ref as React.RefObject<HTMLElement>}
-      className="py-32 lg:py-40 bg-background"
+      className="py-32 bg-default my-20"
       id="security"
     >
       <div className="max-w-7xl mx-auto px-6">

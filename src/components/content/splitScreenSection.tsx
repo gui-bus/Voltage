@@ -33,11 +33,11 @@ export default function SplitScreenSection() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen py-32 overflow-hidden"
+      className="relative py-32 overflow-hidden"
       id="experience"
     >
-      <div className="container mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-3 gap-8 items-center min-h-[70vh]">
+      <div className="px-5">
+        <div className="grid lg:grid-cols-3 gap-8 items-center">
           <motion.div style={{ y: leftY }} className="space-y-8">
             <div className="aspect-square rounded-2xl overflow-hidden">
               <Image

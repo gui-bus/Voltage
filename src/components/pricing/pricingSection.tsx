@@ -56,7 +56,7 @@ export function PricingSection() {
   return (
     <section
       ref={ref as React.RefObject<HTMLElement>}
-      className="relative py-32 lg:py-40 bg-background overflow-hidden"
+      className="relative py-32 lg:py-40 overflow-hidden"
       id="tickets"
     >
       <div className="absolute inset-0 bg-radial from-accent/10 via-transparent to-transparent" />

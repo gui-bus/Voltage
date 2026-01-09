@@ -31,10 +31,10 @@ export default function QuoteSection() {
   return (
     <section
       ref={containerRef}
-      className="relative h-[150vh] bg-[#181818] text-white"
+      className="relative bg-[#181818] text-white"
       id="quote"
     >
-      <div className="sticky top-0 h-screen flex items-center justify-center">
+      <div className="sticky top-0 py-48 flex items-center justify-center">
         <motion.div
           style={{ opacity, y, scale }}
           className="container mx-auto px-6 lg:px-12 text-center"

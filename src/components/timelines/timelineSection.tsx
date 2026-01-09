@@ -1,4 +1,5 @@
 "use client";
+import { ConfettiIcon, PathIcon } from "@phosphor-icons/react";
 //#region Imports
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -48,14 +49,27 @@ export default function TimelineSection() {
   //#endregion
 
   return (
-    <section ref={containerRef} className="bg-background py-32 md:py-48" id="timeline">
+    <section
+      ref={containerRef}
+      className="bg-background py-32 md:py-48"
+      id="timeline"
+    >
       <div className="container mx-auto px-6 lg:px-12">
         <div className="mb-20">
-          <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-accent">
-            Our Journey
-          </p>
-          <h2 className="font-serif text-4xl font-light tracking-tight text-foreground md:text-6xl">
-            Past Events History
+          <div className="flex items-center gap-5 mb-4">
+            <ConfettiIcon size={32} weight="duotone" className="text-accent" />
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">
+              Our Journey
+            </p>
+          </div>
+
+          <h2 className="font-serif text-4xl font-light tracking-tight text-foreground md:text-6xl"></h2>
+
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-5">
+            Past Events{" "}
+            <span className="font-serif italic font-normal text-muted-foreground">
+              History
+            </span>
           </h2>
         </div>
 
@@ -120,7 +134,7 @@ function TimelineItem({
     >
       <span className="font-mono text-sm text-accent">{milestone.year}</span>
 
-      <h3 className="mt-1 font-serif text-2xl font-light text-foreground md:text-3xl">
+      <h3 className="mt-1 uppercase font-serif text-2xl font-light text-foreground md:text-3xl">
         {milestone.title}
       </h3>
 

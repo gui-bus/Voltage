@@ -38,7 +38,7 @@ export function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden select-none"
+      className="pb-40 relative flex items-center justify-center overflow-hidden select-none"
       id="hero"
     >
       <div className="absolute inset-0 noise-overlay" />
@@ -95,7 +95,7 @@ export function HeroSection() {
       />
 
       <div
-        className="relative z-10 text-center px-5 max-w-5xl mx-auto flex flex-col items-center gap-5 min-h-screen justify-center md:justify-start scale-90"
+        className="relative z-10 text-center px-5 max-w-5xl mx-auto flex flex-col items-center gap-5 justify-center md:justify-start scale-90"
         style={{
           opacity,
           transform: `translateY(${textY}px) scale(${scale})`,
