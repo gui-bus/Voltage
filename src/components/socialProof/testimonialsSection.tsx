@@ -79,9 +79,6 @@ export function TestimonialsSection() {
               <TestimonialCard key={i} testimonial={testimonial} index={i} />
             ))}
           </div>
-
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-linear-to-r from-background to-transparent pointer-events-none z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-linear-to-l from-background to-transparent pointer-events-none z-10" />
         </div>
       </div>
     </section>
