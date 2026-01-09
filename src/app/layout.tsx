@@ -79,8 +79,6 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
 
-  themeColor: "#7C3AED",
-
   alternates: {
     canonical: "https://voltage-festival.vercel.app",
   },
