@@ -180,9 +180,9 @@ export function PricingSection() {
 
               <Button
                 className={cn(
-                  "w-full h-12 rounded-full font-medium transition-all text-black",
+                  "w-full h-12 rounded-full font-medium transition-all duration-300 text-black",
                   plan.popular
-                    ? "bg-background text-foreground hover:bg-background/90"
+                    ? "bg-primary-foreground text-white hover:bg-primary hover:-translate-y-1"
                     : "hover:bg-accent hover:text-accent-foreground"
                 )}
                 variant={plan.popular ? "primary" : "secondary"}
