@@ -5,11 +5,12 @@
   --background: #ffffff;
   --foreground: #101010;
 
-  --accent: oklch(0.5881 0.2118 306.32);
+  --accent: oklch(0.652 0.1901 253.21);
+  --accent-foreground: oklch(0.2819 0.1901 253.21);
   --success: oklch(0.65 0.15 155);
 
-  --primary: oklch(0.5881 0.2118 306.32);
-  --primary-foreground: oklch(0.6439 0.2118 306.32);
+  --primary: oklch(0.652 0.1901 253.21);
+  --primary-foreground: oklch(0.6148 0.1901 253.21);
 }
 
 @theme inline {
