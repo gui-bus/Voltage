@@ -107,7 +107,7 @@ export default function Header() {
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <Button className="min-w-fit px-6 h-10 text-lg group/button relative overflow-hidden">
+                <Button className="min-w-fit px-6 h-10 text-lg group/button relative overflow-hidden text-white">
                   <span className="relative z-10">Buy now</span>
 
                   <ShoppingCartIcon

@@ -125,7 +125,7 @@ export function HeroSection() {
           </p>
 
           <Link href={"/#tickets"}>
-            <Button className="w-full max-w-sm mx-auto h-14 text-lg group/button">
+            <Button className="w-full max-w-sm mx-auto h-14 text-lg group/button text-white">
               Get Tickets
               <TicketIcon
                 size={20}

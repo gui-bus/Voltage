@@ -129,7 +129,15 @@ export function Footer() {
             variants={item}
             className="mt-6 text-sm text-muted-foreground"
           >
-            © 2026 Voltage Festival — All Rights Reserved
+            © 2026 Voltage Festival — All Rights Reserved | Designed by{" "}
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.linkedin.com/in/gui-bus/"
+              className="text-primary hover:underline transition-all duration-300"
+            >
+              guibus.dev
+            </Link>
           </motion.p>
         </motion.div>
       </div>
