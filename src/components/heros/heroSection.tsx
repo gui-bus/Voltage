@@ -38,7 +38,7 @@ export function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="pb-40 relative flex items-center justify-center overflow-hidden select-none"
+      className="pb-40 pt-32 relative flex items-center justify-center overflow-hidden select-none"
       id="hero"
     >
       <div className="absolute inset-0 noise-overlay" />

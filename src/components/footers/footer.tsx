@@ -9,6 +9,7 @@ import {
 } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 //#endregion
 
 //#region Constants
@@ -78,14 +79,16 @@ export function Footer() {
           className="flex flex-col items-center text-center"
         >
           <motion.div variants={item}>
-            <Image
-              src="/content/images/voltageBlack.png"
-              alt="Voltage Festival"
-              width={220}
-              height={0}
-              draggable={false}
-              priority
-            />
+            <Link href="/#hero">
+              <Image
+                src="/content/images/voltageBlack.png"
+                alt="Voltage Festival"
+                width={220}
+                height={0}
+                draggable={false}
+                priority
+              />
+            </Link>
           </motion.div>
 
           <motion.p

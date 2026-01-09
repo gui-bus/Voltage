@@ -1,3 +1,6 @@
+"use client";
+//#region Imports
+import { HeroSection } from "@/components/heros/heroSection";
 import { LogoCloud } from "@/components/clients/logoCloud";
 import { HorizontalScrollSection } from "@/components/content/horizontalScrollSection";
 import MaskRevealSection from "@/components/content/maskRevealSection";
@@ -8,18 +11,43 @@ import TextMorphSection from "@/components/content/textMorphSection";
 import { TrustSection } from "@/components/content/trustSection";
 import { FAQSection } from "@/components/faqs/faq";
 import { Footer } from "@/components/footers/footer";
-import { HeroSection } from "@/components/heros/heroSection";
 import { LocationMap } from "@/components/maps/locationMap";
 import { PricingSection } from "@/components/pricing/pricingSection";
 import { ProgressIndicator } from "@/components/progress/progressIndicator";
 import NumbersSection from "@/components/socialProof/numbersSection";
 import { TestimonialsSection } from "@/components/socialProof/testimonialsSection";
 import TimelineSection from "@/components/timelines/timelineSection";
+import Header from "@/components/header/header";
+import { useScrollSpy } from "@/hooks/useScrollSpy";
+//#endregion
 
 export default function Home() {
+  //#region Hooks
+  useScrollSpy([
+    { id: "hero" },
+    { id: "energy" },
+    { id: "experience" },
+    { id: "numbers" },
+    { id: "offer" },
+    { id: "quote" },
+    { id: "timeline" },
+    { id: "visual" },
+    { id: "testimonials" },
+    { id: "lineup" },
+    { id: "security" },
+    { id: "tickets" },
+    { id: "faq" },
+    { id: "partners" },
+    { id: "location" },
+    { id: "footer" },
+  ]);
+  //#endregion
+
   return (
     <main className="relative">
       <ProgressIndicator />
+
+      <Header />
 
       <HeroSection />
 
