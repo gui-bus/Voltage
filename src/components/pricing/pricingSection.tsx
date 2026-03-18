@@ -1,10 +1,15 @@
 "use client";
 
 import { Button, cn } from "@heroui/react";
-import { Lightning, Ticket, IdentificationBadge, SketchLogo } from "@phosphor-icons/react";
-import React from "react";
+import {
+  IdentificationBadge,
+  Lightning,
+  SketchLogo,
+  Ticket,
+} from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import type React from "react";
 
 export function PricingSection() {
   const t = useTranslations("Pricing");
@@ -41,11 +46,7 @@ export function PricingSection() {
       price: "90",
       id: "AC-03",
       desc: t("items.duo.desc"),
-      features: [
-        t("items.duo.f1"),
-        t("items.duo.f2"),
-        t("items.duo.f3"),
-      ],
+      features: [t("items.duo.f1"), t("items.duo.f2"), t("items.duo.f3")],
       icon: SketchLogo,
     },
   ];
@@ -62,7 +63,12 @@ export function PricingSection() {
           </div>
           <h2 className="text-5xl md:text-8xl font-black tracking-[-0.04em] text-white uppercase italic leading-none mb-12">
             {t("title")} <br />
-            <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.4)' }}>{t("titleSpan")}</span>
+            <span
+              className="text-transparent"
+              style={{ WebkitTextStroke: "1px rgba(255,255,255,0.4)" }}
+            >
+              {t("titleSpan")}
+            </span>
           </h2>
           <div className="w-24 h-px bg-purple-500/40" />
         </div>
@@ -77,17 +83,21 @@ export function PricingSection() {
               transition={{ delay: i * 0.1 }}
               className={cn(
                 "group relative p-8 md:p-12 border transition-all duration-500 overflow-hidden",
-                pass.popular 
-                  ? "bg-[#0a0a0a] border-purple-500 shadow-[0_0_50px_-10px_rgba(168,85,247,0.3)]" 
-                  : "bg-[#0a0a0a] border-white/5 hover:border-white/20"
+                pass.popular
+                  ? "bg-[#0a0a0a] border-purple-500 shadow-[0_0_50px_-10px_rgba(168,85,247,0.3)]"
+                  : "bg-[#0a0a0a] border-white/5 hover:border-white/20",
               )}
             >
               {/* Card Header */}
               <div className="flex justify-between items-start mb-16">
-                <div className={cn(
-                  "p-4 border transition-colors duration-500",
-                  pass.popular ? "bg-purple-500 text-black border-purple-500" : "bg-white/5 text-white/40 border-white/10 group-hover:text-white"
-                )}>
+                <div
+                  className={cn(
+                    "p-4 border transition-colors duration-500",
+                    pass.popular
+                      ? "bg-purple-500 text-black border-purple-500"
+                      : "bg-white/5 text-white/40 border-white/10 group-hover:text-white",
+                  )}
+                >
                   <pass.icon size={32} weight="duotone" />
                 </div>
                 <span className="text-[10px] font-black text-white/20 tracking-widest uppercase italic">
@@ -101,8 +111,12 @@ export function PricingSection() {
                   {pass.name}
                 </h3>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-7xl font-black text-white italic tracking-tighter">${pass.price}</span>
-                  <span className="text-xs font-black text-white/20 uppercase tracking-widest">USD</span>
+                  <span className="text-7xl font-black text-white italic tracking-tighter">
+                    ${pass.price}
+                  </span>
+                  <span className="text-xs font-black text-white/20 uppercase tracking-widest">
+                    USD
+                  </span>
                 </div>
               </div>
 
@@ -123,12 +137,14 @@ export function PricingSection() {
               </div>
 
               <Link href="#" className="block">
-                <Button className={cn(
-                  "w-full h-16 rounded-none font-black text-xs uppercase tracking-[0.3em] transition-all duration-500",
-                  pass.popular 
-                    ? "bg-white text-black hover:bg-white/90" 
-                    : "bg-transparent border border-white/10 text-white hover:bg-white hover:text-black"
-                )}>
+                <Button
+                  className={cn(
+                    "w-full h-16 rounded-none font-black text-xs uppercase tracking-[0.3em] transition-all duration-500",
+                    pass.popular
+                      ? "bg-white text-black hover:bg-white/90"
+                      : "bg-transparent border border-white/10 text-white hover:bg-white hover:text-black",
+                  )}
+                >
                   {t("initialize")}
                 </Button>
               </Link>
@@ -150,7 +166,15 @@ export function PricingSection() {
 }
 
 // Simple wrapper for Link if not imported
-function Link({ children, href, className }: { children: React.ReactNode; href: string; className?: string }) {
+function Link({
+  children,
+  href,
+  className,
+}: {
+  children: React.ReactNode;
+  href: string;
+  className?: string;
+}) {
   return (
     <a href={href} className={className}>
       {children}

@@ -1,6 +1,7 @@
 "use client";
 //#region Imports
 import { useEffect } from "react";
+
 //#endregion
 
 //#region Types
@@ -42,7 +43,7 @@ export const useScrollSpy = (sections: ScrollSpySection[]) => {
       {
         rootMargin: "-50% 0px -49% 0px",
         threshold: 0,
-      }
+      },
     );
 
     const elements = sections.map(({ id }) => document.getElementById(id));

@@ -1,6 +1,4 @@
 "use client";
-//#region Imports
-import { HeroSection } from "@/components/heros/heroSection";
 import { LogoCloud } from "@/components/clients/logoCloud";
 import { HorizontalScrollSection } from "@/components/content/horizontalScrollSection";
 import MaskRevealSection from "@/components/content/maskRevealSection";
@@ -11,12 +9,14 @@ import TextMorphSection from "@/components/content/textMorphSection";
 import { TrustSection } from "@/components/content/trustSection";
 import { FAQSection } from "@/components/faqs/faq";
 import { Footer } from "@/components/footers/footer";
+import Header from "@/components/header/header";
+//#region Imports
+import { HeroSection } from "@/components/heros/heroSection";
 import { LocationMap } from "@/components/maps/locationMap";
 import { PricingSection } from "@/components/pricing/pricingSection";
 import NumbersSection from "@/components/socialProof/numbersSection";
 import { TestimonialsSection } from "@/components/socialProof/testimonialsSection";
 import TimelineSection from "@/components/timelines/timelineSection";
-import Header from "@/components/header/header";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 //#endregion
 

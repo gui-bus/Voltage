@@ -1,8 +1,8 @@
 "use client";
 //#region Imports
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
 import { useTranslations } from "next-intl";
+import { useRef } from "react";
 //#endregion
 
 export default function QuoteSection() {
@@ -20,12 +20,12 @@ export default function QuoteSection() {
   const opacity = useTransform(
     scrollYProgress,
     [0.2, 0.4, 0.6, 0.8],
-    [0, 1, 1, 0]
+    [0, 1, 1, 0],
   );
   const y = useTransform(
     scrollYProgress,
     [0.2, 0.4, 0.6, 0.8],
-    [50, 0, 0, -50]
+    [50, 0, 0, -50],
   );
   const scale = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [0.95, 1, 0.95]);
   //#endregion

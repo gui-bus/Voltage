@@ -1,13 +1,13 @@
-import {setRequestLocale} from 'next-intl/server';
-import {HomeClient} from './home-client';
+import { setRequestLocale } from "next-intl/server";
+import { HomeClient } from "./home-client";
 
 export default async function HomePage({
-  params
+  params,
 }: {
-  params: Promise<{locale: string}>;
+  params: Promise<{ locale: string }>;
 }) {
-  const {locale} = await params;
-  
+  const { locale } = await params;
+
   setRequestLocale(locale);
 
   return <HomeClient />;

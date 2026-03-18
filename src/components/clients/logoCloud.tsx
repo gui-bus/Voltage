@@ -1,8 +1,8 @@
 "use client";
 
+import { Lightning } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Lightning } from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
 
 const logos = [
@@ -45,13 +45,13 @@ export function LogoCloud() {
               {/* Technical corner marks */}
               <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/0 group-hover:border-purple-500/40 transition-all" />
               <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/0 group-hover:border-purple-500/40 transition-all" />
-              
+
               <div className="relative z-10 grayscale group-hover:grayscale-0 transition-all duration-700 opacity-30 group-hover:opacity-100 group-hover:scale-110">
-                <Image 
-                  src={logo.src} 
-                  alt={logo.name} 
-                  width={120} 
-                  height={60} 
+                <Image
+                  src={logo.src}
+                  alt={logo.name}
+                  width={120}
+                  height={60}
                   className="object-contain"
                 />
               </div>

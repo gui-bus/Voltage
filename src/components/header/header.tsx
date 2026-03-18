@@ -2,11 +2,11 @@
 
 import { Button, cn } from "@heroui/react";
 import { Lightning, List, X } from "@phosphor-icons/react";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { LanguageSelector } from "../language/languageSelector";
 import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
+import { LanguageSelector } from "../language/languageSelector";
 
 export default function Header() {
   const t = useTranslations("Header");
@@ -28,13 +28,17 @@ export default function Header() {
 
   return (
     <>
-      <header className={cn(
-        "fixed top-0 left-0 w-full z-[100] transition-all duration-500",
-        scrolled ? "bg-black/90 backdrop-blur-xl h-16" : "bg-transparent h-24"
-      )}>
+      <header
+        className={cn(
+          "fixed top-0 left-0 w-full z-[100] transition-all duration-500",
+          scrolled
+            ? "bg-black/90 backdrop-blur-xl h-16"
+            : "bg-transparent h-24",
+        )}
+      >
         {/* Horizontal separator line */}
         <div className="absolute bottom-0 left-0 w-full h-px bg-white/10" />
-        
+
         <div className="max-w-[1800px] mx-auto h-full flex items-center px-6 lg:px-12">
           {/* Brand/Logo Zone */}
           <div className="flex items-center gap-4 pr-12 border-r border-white/10 h-full">
@@ -42,7 +46,9 @@ export default function Header() {
               <div className="w-8 h-8 bg-purple-500 flex items-center justify-center">
                 <Lightning weight="fill" size={20} className="text-black" />
               </div>
-              <span className="text-2xl font-black tracking-tighter text-white uppercase italic">VOLTAGE</span>
+              <span className="text-2xl font-black tracking-tighter text-white uppercase italic">
+                VOLTAGE
+              </span>
             </Link>
           </div>
 
@@ -73,7 +79,7 @@ export default function Header() {
             </Link>
 
             {/* Mobile Toggle */}
-            <button 
+            <button
               className="lg:hidden text-white w-10 h-10 flex items-center justify-center border border-white/10 hover:bg-white/5"
               onClick={() => setMenuOpen(!menuOpen)}
             >
@@ -94,8 +100,13 @@ export default function Header() {
           >
             {/* Overlay Header */}
             <div className="h-20 flex items-center justify-between px-6 border-b border-white/10">
-              <span className="text-xl font-black text-white italic tracking-tighter">VOLTAGE</span>
-              <button onClick={() => setMenuOpen(false)} className="text-white w-12 h-12 flex items-center justify-center border border-white/10">
+              <span className="text-xl font-black text-white italic tracking-tighter">
+                VOLTAGE
+              </span>
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="text-white w-12 h-12 flex items-center justify-center border border-white/10"
+              >
                 <X size={32} />
               </button>
             </div>
@@ -109,8 +120,8 @@ export default function Header() {
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: i * 0.1 }}
                 >
-                  <Link 
-                    href={link.href} 
+                  <Link
+                    href={link.href}
                     onClick={() => setMenuOpen(false)}
                     className="text-5xl sm:text-7xl font-black text-white/20 hover:text-purple-500 uppercase italic transition-colors leading-none tracking-tighter"
                   >
@@ -123,7 +134,9 @@ export default function Header() {
             {/* Overlay Footer */}
             <div className="p-8 border-t border-white/10 flex flex-col gap-8 bg-[#0a0a0a]">
               <div className="flex justify-between items-center">
-                <span className="text-[10px] font-black text-white/20 uppercase tracking-[0.4em] italic">{t("selectLanguage")}</span>
+                <span className="text-[10px] font-black text-white/20 uppercase tracking-[0.4em] italic">
+                  {t("selectLanguage")}
+                </span>
                 <LanguageSelector />
               </div>
               <Link href="#tickets" onClick={() => setMenuOpen(false)}>

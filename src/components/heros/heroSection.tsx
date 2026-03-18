@@ -1,11 +1,10 @@
 "use client";
 
 import { Button } from "@heroui/react";
-import { Lightning, Ticket } from "@phosphor-icons/react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { useRef } from "react";
 import { useTranslations } from "next-intl";
+import { useRef } from "react";
 
 export function HeroSection() {
   const t = useTranslations("Hero");
@@ -37,7 +36,7 @@ export function HeroSection() {
         />
         {/* Deep Vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_90%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+        <div className="absolute inset-0 bg-linear-to-b from-black via-transparent to-black" />
       </motion.div>
 
       {/* Atmospheric Glow */}
@@ -50,7 +49,7 @@ export function HeroSection() {
       >
         {/* Main Title with Layered Glow */}
         <div className="relative mb-12 group">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
@@ -58,10 +57,10 @@ export function HeroSection() {
           >
             VOLTAGE
           </motion.h1>
-          <motion.div 
-            animate={{ 
+          <motion.div
+            animate={{
               opacity: [0.2, 0.5, 0.2],
-              scale: [1, 1.02, 1]
+              scale: [1, 1.02, 1],
             }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             className="absolute inset-0 text-7xl sm:text-8xl md:text-9xl lg:text-[180px] xl:text-[240px] font-black leading-none tracking-[-0.06em] text-purple-500 uppercase italic blur-3xl z-0 pointer-events-none select-none"
@@ -110,7 +109,7 @@ export function HeroSection() {
       {/* Decorative Accents */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20 border-[40px] border-white/5" />
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-30">
-        <div className="w-px h-16 bg-gradient-to-b from-white to-transparent" />
+        <div className="w-px h-16 bg-linear-to-b from-white to-transparent" />
       </div>
     </section>
   );

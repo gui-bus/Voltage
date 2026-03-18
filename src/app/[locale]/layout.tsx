@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { Montserrat, Playfair_Display } from "next/font/google";
-import {NextIntlClientProvider} from 'next-intl';
-import {getMessages, setRequestLocale, getTranslations} from 'next-intl/server';
-import {routing} from '@/i18n/routing';
+import { NextIntlClientProvider } from "next-intl";
+import {
+  getMessages,
+  getTranslations,
+  setRequestLocale,
+} from "next-intl/server";
+import { routing } from "@/i18n/routing";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -16,16 +20,16 @@ const playfair = Playfair_Display({
 });
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({locale}));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({
-  params
+  params,
 }: {
-  params: Promise<{locale: string}>;
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const {locale} = await params;
-  const t = await getTranslations({locale, namespace: 'Metadata'});
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Metadata" });
 
   return {
     metadataBase: new URL("https://voltage-festival.vercel.app"),
@@ -74,7 +78,7 @@ export async function generateMetadata({
           alt: "Voltage Festival — Electronic Music Experience",
         },
       ],
-      locale: locale === 'pt' ? 'pt_BR' : 'en_US',
+      locale: locale === "pt" ? "pt_BR" : "en_US",
       type: "website",
     },
 
@@ -99,12 +103,12 @@ export async function generateMetadata({
 
 export default async function RootLayout({
   children,
-  params
+  params,
 }: {
   children: React.ReactNode;
-  params: Promise<{locale: string}>;
+  params: Promise<{ locale: string }>;
 }) {
-  const {locale} = await params;
+  const { locale } = await params;
   setRequestLocale(locale);
   const messages = await getMessages();
 

@@ -2,8 +2,8 @@
 //#region Imports
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
 import { useTranslations } from "next-intl";
+import { useRef } from "react";
 //#endregion
 
 export default function MaskRevealSection() {
@@ -23,7 +23,7 @@ export default function MaskRevealSection() {
 
   const maskImage = useTransform(
     maskSize,
-    (v) => `radial-gradient(circle at center, black ${v}, transparent ${v})`
+    (v) => `radial-gradient(circle at center, black ${v}, transparent ${v})`,
   );
   //#endregion
 

@@ -1,9 +1,9 @@
 "use client";
 
+import { Globe, Lightning, Pulse, Users } from "@phosphor-icons/react";
 import { motion, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
-import { Lightning, Pulse, Users, Globe } from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
+import { useEffect, useRef } from "react";
 
 export default function NumbersSection() {
   const t = useTranslations("Numbers");
@@ -18,7 +18,11 @@ export default function NumbersSection() {
   ];
 
   return (
-    <section ref={containerRef} className="py-24 bg-black border-y border-white/5" id="numbers">
+    <section
+      ref={containerRef}
+      className="py-24 bg-black border-y border-white/5"
+      id="numbers"
+    >
       <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-white/5 bg-[#0a0a0a]">
           {stats.map((stat, i) => (
@@ -32,7 +36,7 @@ export default function NumbersSection() {
               <div className="mb-12 text-white/20 group-hover:text-purple-500 transition-colors duration-500">
                 <stat.icon size={32} weight="duotone" />
               </div>
-              
+
               <div className="flex items-baseline gap-2 mb-4">
                 <span className="text-6xl md:text-7xl font-black text-white italic tracking-tighter">
                   <Counter
@@ -45,7 +49,7 @@ export default function NumbersSection() {
                   {stat.suffix}
                 </span>
               </div>
-              
+
               <div className="flex items-center gap-3">
                 <div className="w-8 h-px bg-purple-500/40" />
                 <p className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase">
@@ -60,7 +64,19 @@ export default function NumbersSection() {
   );
 }
 
-function Counter({ from, to, duration, delay, inView }: { from: number; to: number; duration: number; delay: number; inView: boolean }) {
+function Counter({
+  from,
+  to,
+  duration,
+  delay,
+  inView,
+}: {
+  from: number;
+  to: number;
+  duration: number;
+  delay: number;
+  inView: boolean;
+}) {
   const countRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -68,8 +84,11 @@ function Counter({ from, to, duration, delay, inView }: { from: number; to: numb
       let startTimestamp: number | null = null;
       const step = (timestamp: number) => {
         if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
-        
+        const progress = Math.min(
+          (timestamp - startTimestamp) / (duration * 1000),
+          1,
+        );
+
         if (countRef.current) {
           const currentCount = Math.floor(progress * (to - from) + from);
           countRef.current.textContent = currentCount.toLocaleString();

@@ -38,7 +38,7 @@ export function FooterSection() {
         <div
           className={cn(
             "grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10 lg:gap-16 mb-16 transition-all duration-1000",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
           )}
         >
           <div className="col-span-2 md:col-span-4 lg:col-span-1 lg:pr-8">
@@ -75,7 +75,7 @@ export function FooterSection() {
                 "transition-all duration-700",
                 isVisible
                   ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
+                  : "opacity-0 translate-y-6",
               )}
               style={{ transitionDelay: `${(i + 1) * 100}ms` }}
             >
@@ -101,7 +101,7 @@ export function FooterSection() {
         <div
           className={cn(
             "pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-6 transition-all duration-1000",
-            isVisible ? "opacity-100" : "opacity-0"
+            isVisible ? "opacity-100" : "opacity-0",
           )}
           style={{ transitionDelay: "600ms" }}
         >

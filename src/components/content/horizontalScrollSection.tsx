@@ -1,10 +1,9 @@
 "use client";
 
-import { cn } from "@heroui/react";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { useEffect, useRef, useState } from "react";
 
 export function HorizontalScrollSection() {
   const t = useTranslations("Lineup");
@@ -93,7 +92,11 @@ export function HorizontalScrollSection() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative h-[400vh] bg-black" id="lineup">
+    <section
+      ref={containerRef}
+      className="relative h-[400vh] bg-black"
+      id="lineup"
+    >
       <div className="sticky top-0 h-svh flex flex-col justify-center overflow-hidden">
         {/* Section Header */}
         <div className="max-w-[1800px] mx-auto px-6 lg:px-12 w-full mb-20">
@@ -107,7 +110,12 @@ export function HorizontalScrollSection() {
               </div>
               <h2 className="text-6xl md:text-8xl font-black tracking-[-0.04em] text-white uppercase italic leading-none">
                 {t("title")} <br />
-                <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.4)' }}>{t("titleSpan")}</span>
+                <span
+                  className="text-transparent"
+                  style={{ WebkitTextStroke: "1px rgba(255,255,255,0.4)" }}
+                >
+                  {t("titleSpan")}
+                </span>
               </h2>
             </div>
             <p className="text-lg font-bold tracking-tight text-white/30 max-w-sm uppercase italic">
@@ -145,8 +153,12 @@ export function HorizontalScrollSection() {
                     ID_{String(index + 1).padStart(3, "0")}
                   </span>
                   <div className="flex flex-col items-end">
-                    <span className="text-[8px] font-black text-purple-500 tracking-widest uppercase mb-1">{t("frequency")}</span>
-                    <span className="text-[10px] font-black text-white">{dj.bpm} BPM</span>
+                    <span className="text-[8px] font-black text-purple-500 tracking-widest uppercase mb-1">
+                      {t("frequency")}
+                    </span>
+                    <span className="text-[10px] font-black text-white">
+                      {dj.bpm} BPM
+                    </span>
                   </div>
                 </div>
 
@@ -171,14 +183,18 @@ export function HorizontalScrollSection() {
         {/* Progress Indicator */}
         <div className="max-w-[1800px] mx-auto px-6 lg:px-12 w-full mt-20">
           <div className="w-full h-1 bg-white/5 relative overflow-hidden">
-            <motion.div 
+            <motion.div
               className="absolute top-0 left-0 h-full bg-purple-500"
               style={{ width: `${scrollProgress * 100}%` }}
             />
           </div>
           <div className="flex justify-between mt-4">
-            <span className="text-[10px] font-black text-white/20 tracking-widest uppercase">01 / {djs.length}</span>
-            <span className="text-[10px] font-black text-white/20 tracking-widest uppercase">{t("scroll")}</span>
+            <span className="text-[10px] font-black text-white/20 tracking-widest uppercase">
+              01 / {djs.length}
+            </span>
+            <span className="text-[10px] font-black text-white/20 tracking-widest uppercase">
+              {t("scroll")}
+            </span>
           </div>
         </div>
       </div>

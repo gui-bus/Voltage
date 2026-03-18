@@ -1,8 +1,6 @@
 "use client";
 
-import { cn } from "@heroui/react";
-import { Quotes, Lightning } from "@phosphor-icons/react";
-import React from "react";
+import { Lightning, Quotes } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -35,7 +33,10 @@ export function TestimonialsSection() {
   ];
 
   return (
-    <section className="py-24 md:py-40 bg-black overflow-hidden" id="testimonials">
+    <section
+      className="py-24 md:py-40 bg-black overflow-hidden"
+      id="testimonials"
+    >
       <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
         <div className="flex flex-col md:flex-row items-end justify-between gap-12 mb-24">
           <div className="flex flex-col">
@@ -47,7 +48,12 @@ export function TestimonialsSection() {
             </div>
             <h2 className="text-5xl md:text-8xl font-black tracking-[-0.04em] text-white uppercase italic leading-none">
               {t("title")} <br />
-              <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.4)' }}>{t("titleSpan")}</span>
+              <span
+                className="text-transparent"
+                style={{ WebkitTextStroke: "1px rgba(255,255,255,0.4)" }}
+              >
+                {t("titleSpan")}
+              </span>
             </h2>
           </div>
           <p className="text-lg md:text-xl font-bold tracking-tight text-white/30 max-w-sm uppercase italic">
@@ -66,8 +72,14 @@ export function TestimonialsSection() {
               className="group relative p-10 bg-[#0a0a0a] border border-white/5 flex flex-col items-start transition-all duration-500 hover:border-purple-500/30"
             >
               <div className="flex justify-between items-center w-full mb-12">
-                <span className="text-[10px] font-black text-purple-500 tracking-[0.4em] uppercase">{item.id}</span>
-                <Quotes size={32} weight="fill" className="text-white/5 group-hover:text-purple-500/20 transition-colors" />
+                <span className="text-[10px] font-black text-purple-500 tracking-[0.4em] uppercase">
+                  {item.id}
+                </span>
+                <Quotes
+                  size={32}
+                  weight="fill"
+                  className="text-white/5 group-hover:text-purple-500/20 transition-colors"
+                />
               </div>
 
               <blockquote className="text-xl md:text-2xl font-black tracking-tight text-white uppercase italic leading-tight mb-16 grow">
@@ -84,8 +96,12 @@ export function TestimonialsSection() {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-sm font-black text-white tracking-tighter uppercase italic">{item.author}</span>
-                  <span className="text-[10px] font-bold text-white/30 tracking-[0.2em] uppercase">{item.role}</span>
+                  <span className="text-sm font-black text-white tracking-tighter uppercase italic">
+                    {item.author}
+                  </span>
+                  <span className="text-[10px] font-bold text-white/30 tracking-[0.2em] uppercase">
+                    {item.role}
+                  </span>
                 </div>
               </div>
             </motion.div>
