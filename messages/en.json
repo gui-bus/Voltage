@@ -1,0 +1,250 @@
+{
+  "Metadata": {
+    "title": "Voltage Festival — Indoor Electronic Music Experience",
+    "template": "%s | Voltage Festival",
+    "description": "Voltage Festival is an immersive indoor electronic music experience featuring world-class DJs, neon visuals, and nonstop energy.",
+    "ogTitle": "Voltage Festival — Feel the Pulse of the Night",
+    "ogDescription": "Step into the future of electronic music. DJs, neon lights, and an unforgettable indoor rave experience."
+  },
+  "Header": {
+    "lineup": "LINEUP",
+    "experience": "EXPERIENCE",
+    "tickets": "TICKETS",
+    "faq": "FAQ",
+    "accessEvent": "ACCESS_EVENT",
+    "navigation": "NAVIGATION",
+    "selectLanguage": "Select Language",
+    "initializeAccess": "INITIALIZE_ACCESS"
+  },
+  "Hero": {
+    "tagline": "High-energy indoor electronic music experience.",
+    "info": "Neon Club • New York City • 2026.07.23",
+    "buyPass": "BUY ACCESS PASS",
+    "viewLineup": "VIEW LINEUP"
+  },
+  "SplitScreen": {
+    "sensoryInput": "Sensory.Input",
+    "liveFeed": "LIVE_FEED.01",
+    "specs": {
+      "audio": "AUDIO",
+      "audioValue": "120KW L-ACOUSTICS",
+      "visuals": "VISUALS",
+      "visualsValue": "4K LASER MAPPING",
+      "energy": "ENERGY",
+      "energyValue": "PEAK 142 BPM"
+    },
+    "architecture": "The Architecture",
+    "beyondSound": "BEYOND",
+    "beyondSoundSpan": "SOUND",
+    "description": "Voltage isn't just a performance—it's a sensory overload engineered for the elite. Experience the fusion of high-precision audio and immersive laser mapping in a space designed to defy limits.",
+    "capacity": "Capacity",
+    "capacityValue": "2,500 UNITS",
+    "duration": "Duration",
+    "durationValue": "08 HOURS"
+  },
+  "CoreComponents": {
+    "protocol": "Voltage.Protocol",
+    "title": "THE CORE",
+    "titleSpan": "COMPONENTS",
+    "description": "Engineered for those who seek the extreme. Voltage delivers a curated environment where technology meets visceral sound.",
+    "items": {
+      "relentless": {
+        "title": "RELENTLESS",
+        "desc": "Energy flow designed to never lose momentum."
+      },
+      "hypnotic": {
+        "title": "HYPNOTIC",
+        "desc": "A sensory vacuum at the heart of the night."
+      },
+      "nocturnal": {
+        "title": "NOCTURNAL",
+        "desc": "Mastering the darkness through light and sound."
+      },
+      "transcendent": {
+        "title": "TRANSCENDENT",
+        "desc": "Pushing the boundaries of the physical rave."
+      }
+    }
+  },
+  "Timeline": {
+    "protocol": "Voltage.History",
+    "title": "EVOLUTION",
+    "titleSpan": "SEQUENCE",
+    "items": {
+      "2023": {
+        "title": "GENESIS",
+        "desc": "The initial spark gathering 3,000 attendees and 6 global DJs."
+      },
+      "2024": {
+        "title": "NEON PULSE",
+        "desc": "Redefining immersion with neon ecosystems and interactive stages."
+      },
+      "2025": {
+        "title": "MULTIVERSE",
+        "desc": "Expanding to four stages with VR-powered sensory visuals."
+      },
+      "2026": {
+        "title": "FULL CHARGE",
+        "desc": "The ultimate peak featuring cutting-edge light technology."
+      }
+    }
+  },
+  "Lineup": {
+    "protocol": "Lineup.Sequence",
+    "title": "THE",
+    "titleSpan": "ARTISTS",
+    "description": "A curated selection of sonic engineers designed to push the boundaries of the nocturnal experience.",
+    "frequency": "Frequency",
+    "scroll": "Lineup_Scroll",
+    "djs": {
+      "supernova": "An EDM powerhouse known for electrifying live performances.",
+      "luma": "A techno visionary crafting immersive soundscapes.",
+      "bassline-x": "Masters of bass-heavy beats that move the crowd.",
+      "trancewave": "Progressive trance with unforgettable melodies.",
+      "neon-flux": "High-energy sets blending techno and electro.",
+      "echo-pulse": "Hypnotic rhythms designed for late-night journeys.",
+      "vortex": "Dark, driving techno with relentless momentum.",
+      "aurora": "Melodic electronic music with emotional depth.",
+      "signal-lost": "Experimental sounds pushing dancefloor boundaries.",
+      "midnight-circuit": "Fast-paced electronic beats built for peak time."
+    }
+  },
+  "Trust": {
+    "protocol": "Safety.Infrastructure",
+    "title": "SECURE",
+    "titleSpan": "ENVIRONMENT",
+    "description": "Every detail at Voltage is engineered to ensure total safety without compromising the immersion of the rave.",
+    "items": {
+      "medical": {
+        "title": "Medical.Support",
+        "desc": "Rapid response units stationed across all sectors for immediate intervention."
+      },
+      "security": {
+        "title": "Tactical.Security",
+        "desc": "Professional crew monitoring crowd flow and perimeter integrity 24/7."
+      },
+      "extraction": {
+        "title": "Extraction.Points",
+        "desc": "High-visibility, illuminated exit routes engineered for rapid evacuation."
+      },
+      "venue": {
+        "title": "Venue.Integrity",
+        "desc": "Continuous monitoring and controlled access points across the facility."
+      }
+    }
+  },
+  "Pricing": {
+    "protocol": "Access.Authentication",
+    "title": "SECURE",
+    "titleSpan": "PASSES",
+    "initialize": "INITIALIZE AUTH",
+    "recommended": "Recommended",
+    "items": {
+      "standard": {
+        "name": "Standard.Access",
+        "desc": "Full single-entry protocol for all active stages.",
+        "f1": "Access: All Sectors",
+        "f2": "Duration: 08 Hours",
+        "f3": "Level: Standard"
+      },
+      "vip": {
+        "name": "VIP.Tactical",
+        "desc": "Advanced entry protocol for groups of four with full priority.",
+        "f1": "Units: 4 People",
+        "f2": "Priority: Tier-01",
+        "f3": "Zones: Elevated",
+        "f4": "Recovery: Exclusive"
+      },
+      "duo": {
+        "name": "Duo.Sync",
+        "desc": "Synchronized entry protocol for dual-unit operation.",
+        "f1": "Units: 2 People",
+        "f2": "Access: All Sectors",
+        "f3": "Sync: Full"
+      }
+    }
+  },
+  "Numbers": {
+    "sonic": "SONIC_ENGINEERS",
+    "flow": "CONTINUOUS_FLOW",
+    "units": "TOTAL_UNITS",
+    "sectors": "ACTIVE_SECTORS"
+  },
+  "Testimonials": {
+    "protocol": "Transmission.Logs",
+    "title": "REAL",
+    "titleSpan": "FEEDBACK",
+    "description": "Direct reports from processed units during the previous cycles.",
+    "items": {
+      "log1": {
+        "quote": "VOLTAGE IS HANDS DOWN THE BEST ELECTRONIC MUSIC FESTIVAL I'VE EVER ATTENDED.",
+        "role": "SONIC_INFLUENCER"
+      },
+      "log2": {
+        "quote": "THE ENERGY, THE LIGHTS, THE MUSIC — IT ALL FELT LIKE A DREAM COME TRUE.",
+        "role": "VISUAL_ENGINEER"
+      },
+      "log3": {
+        "quote": "EVERY BEAT, EVERY DROP, EVERY MOMENT WAS ABSOLUTELY PEAK PERFORMANCE.",
+        "role": "UNIT_OPERATOR"
+      }
+    }
+  },
+  "FAQ": {
+    "protocol": "Technical.Briefing",
+    "title": "ESSENTIAL",
+    "titleSpan": "INTEL",
+    "ans": "ANS",
+    "items": {
+      "q1": "WHAT IS THE MINIMUM AGE TO ATTEND?",
+      "a1": "VOLTAGE IS STRICTLY 18+ ONLY. A VALID GOVERNMENT-ISSUED PHOTO ID IS REQUIRED AT ENTRY FOR AGE VERIFICATION.",
+      "q2": "IS THERE PARKING AVAILABLE?",
+      "a2": "A SECURE, ON-SITE PARKING LOT WILL BE AVAILABLE THROUGHOUT THE EVENT. AVAILABILITY IS LIMITED.",
+      "q3": "CAN I BRING MY OWN FOOD OR DRINKS?",
+      "a3": "OUTSIDE FOOD AND DRINKS ARE NOT PERMITTED. INSIDE THE VENUE, YOU’LL FIND CURATED FOOD TRUCKS AND BARS.",
+      "q4": "ARE CAMERAS ALLOWED?",
+      "a4": "SMARTPHONES AND SMALL PERSONAL CAMERAS ARE ALLOWED. PROFESSIONAL CAMERAS REQUIRE AN OFFICIAL PRESS PASS.",
+      "q5": "IS RE-ENTRY ALLOWED?",
+      "a5": "RE-ENTRY IS NOT PERMITTED ONCE YOU LEAVE THE VENUE. PLEASE PLAN ACCORDINGLY."
+    }
+  },
+  "LogoCloud": {
+    "protocol": "Strategic.Partners"
+  },
+  "Quote": {
+    "text": "The night belongs to those who feel the music.",
+    "author": "— Nina Kraviz — DJ & Producer"
+  },
+  "MaskReveal": {
+    "title": "Frame the Feeling",
+    "description": "A night defined by connection, music, and energy."
+  },
+  "Map": {
+    "protocol": "Deployment.Coordinates",
+    "title": "THE",
+    "titleSpan": "EPICENTER",
+    "location": "Location",
+    "address": "Address",
+    "locValue": "Neon Club • New York City",
+    "addrValue": "123 Industrial Sector, Tech District, NY 10001"
+  },
+  "Footer": {
+    "description": "The ultimate high-energy indoor electronic music experience. engineered for the nocturnal.",
+    "nav": "Navigation",
+    "navItems": {
+      "lineup": "LINEUP",
+      "experience": "EXPERIENCE",
+      "tickets": "TICKETS",
+      "faq": "FAQ"
+    },
+    "info": "Information",
+    "conn": "Connection",
+    "join": "Join the high-voltage network for updates.",
+    "connect": "CONNECT_NOW",
+    "stable": "SYSTEM_STABLE",
+    "top": "Back_to_Top",
+    "privacy": "PRIVACY_POLICY",
+    "terms": "TERMS_OF_SERVICE",
+    "safety": "SAFETY_GUIDE"
+  }
+}

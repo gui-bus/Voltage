@@ -13,7 +13,6 @@ import { FAQSection } from "@/components/faqs/faq";
 import { Footer } from "@/components/footers/footer";
 import { LocationMap } from "@/components/maps/locationMap";
 import { PricingSection } from "@/components/pricing/pricingSection";
-import { ProgressIndicator } from "@/components/progress/progressIndicator";
 import NumbersSection from "@/components/socialProof/numbersSection";
 import { TestimonialsSection } from "@/components/socialProof/testimonialsSection";
 import TimelineSection from "@/components/timelines/timelineSection";
@@ -21,7 +20,7 @@ import Header from "@/components/header/header";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 //#endregion
 
-export default function Home() {
+export function HomeClient() {
   //#region Hooks
   useScrollSpy([
     { id: "hero" },
@@ -45,8 +44,6 @@ export default function Home() {
 
   return (
     <main className="relative">
-      <ProgressIndicator />
-
       <Header />
 
       <HeroSection />
