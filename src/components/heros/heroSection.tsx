@@ -1,161 +1,117 @@
 "use client";
-//#region Imports
+
 import { Button } from "@heroui/react";
-import { ArrowRightIcon, TicketIcon } from "@phosphor-icons/react";
-import { motion } from "framer-motion";
-import Image from "next/image";
+import { Lightning, Ticket } from "@phosphor-icons/react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-//#endregion
+import { useRef } from "react";
+import { useTranslations } from "next-intl";
 
 export function HeroSection() {
-  //#region useStates
-  const [scrollY, setScrollY] = useState(0);
-  //#endregion
+  const t = useTranslations("Hero");
+  const containerRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
 
-  //#region useRefs
-  const heroRef = useRef<HTMLElement>(null);
-  //#endregion
-
-  //#region useEffects
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-  //#endregion
-
-  //#region Constants
-  const rawOpacity = 1 - scrollY / 700;
-  const opacity = Number.isNaN(rawOpacity) ? 1 : Math.max(rawOpacity, 0);
-  const scale = Number.isNaN(scrollY) ? 1 : 1 + scrollY * 0.0002;
-  const textY = Number.isNaN(scrollY) ? 0 : scrollY * 0.35;
-  const blur = Number.isNaN(scrollY) ? 0 : Math.min(scrollY / 100, 5);
-  //#endregion
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const blur = useTransform(scrollYProgress, [0, 0.5], [0, 15]);
 
   return (
     <section
-      ref={heroRef}
-      className="pb-40 pt-32 relative flex items-center justify-center overflow-hidden select-none"
+      ref={containerRef}
+      className="relative h-svh w-full flex flex-col items-center justify-center overflow-hidden bg-black"
       id="hero"
     >
-      <div className="absolute inset-0 noise-overlay" />
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `
-            radial-gradient(ellipse 80% 50% at 50% -20%, oklch(0.55 0.18 260 / 0.08), transparent),
-            radial-gradient(ellipse 60% 40% at 80% 60%, oklch(0.6 0.15 200 / 0.05), transparent),
-            radial-gradient(ellipse 50% 30% at 20% 80%, oklch(0.7 0.12 280 / 0.04), transparent)
-          `,
-          transform: `translateY(${scrollY * 0.15}px)`,
-        }}
-      />
-
-      <motion.div
-        className="absolute inset-0 z-0"
-        initial={{ opacity: 0, scale: 1.05 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2 }}
-      >
+      {/* Background Layer: Immersive Video */}
+      <motion.div style={{ scale }} className="absolute inset-0 z-0">
         <video
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover opacity-50 grayscale"
           autoPlay
           loop
           muted
           playsInline
-          preload="auto"
-          poster="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
-        >
-          <source src="/content/videos/hero.mp4" type="video/mp4" />
-        </video>
-
-        <div className="absolute inset-0 bg-black/60" />
+          src="/content/videos/hero.mp4"
+        />
+        {/* Deep Vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_90%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
       </motion.div>
 
-      <div
-        className="absolute top-[15%] left-[8%] w-100 h-100 rounded-full opacity-40"
-        style={{
-          background:
-            "radial-gradient(circle, oklch(0.55 0.18 260 / 0.3) 0%, transparent 70%)",
-          filter: "blur(80px)",
-          transform: `translate(${scrollY * 0.08}px, ${scrollY * 0.12}px)`,
-        }}
-      />
-      <div
-        className="absolute bottom-[20%] right-[10%] w-125 h-125 rounded-full opacity-30"
-        style={{
-          background:
-            "radial-gradient(circle, oklch(0.6 0.15 200 / 0.25) 0%, transparent 70%)",
-          filter: "blur(100px)",
-          transform: `translate(-${scrollY * 0.06}px, -${scrollY * 0.1}px)`,
-        }}
-      />
+      {/* Atmospheric Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-full max-h-96 bg-purple-600/10 blur-[160px] pointer-events-none" />
 
-      <div
-        className="relative z-10 text-center px-5 max-w-5xl mx-auto flex flex-col items-center gap-5 justify-center md:justify-start scale-90"
-        style={{
-          opacity,
-          transform: `translateY(${textY}px) scale(${scale})`,
-          filter: `blur(${blur}px)`,
-        }}
+      {/* Content */}
+      <motion.div
+        style={{ opacity, filter: `blur(${blur}px)` }}
+        className="relative z-10 w-full max-w-[1400px] px-6 flex flex-col items-center text-center"
       >
-        <Image
-          width={400}
-          height={0}
-          src="/content/images/voltageWhite.png"
-          alt="Voltage"
-          priority
-          draggable={false}
-        />
-
-        <h1 className="text-[clamp(3rem,8vw,5rem)] font-semibold tracking-[-0.04em] leading-[0.95] text-white mb-8">
-          The Ultimate Indoor
-          <br />
-          <span className="font-serif italic font-normal text-white">
-            Electronic Music Experience
-          </span>
-        </h1>
-
-        <div className="space-y-5">
-          <p className="text-lg md:text-xl text-white max-w-2xl mx-auto leading-relaxed font-light">
-            July 23, 2026 – Neon Club, New York
-          </p>
-
-          <Link href={"/#tickets"}>
-            <Button className="w-full max-w-sm mx-auto h-14 text-lg group/button text-white">
-              Get Tickets
-              <TicketIcon
-                size={20}
-                weight="bold"
-                className="ml-2 group-hover/button:translate-x-1 transition-all duration-300"
-              />
-            </Button>
-          </Link>
+        {/* Main Title with Layered Glow */}
+        <div className="relative mb-12 group">
+          <motion.h1 
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-7xl sm:text-8xl md:text-9xl lg:text-[180px] xl:text-[240px] font-black leading-none tracking-[-0.06em] text-white uppercase italic relative z-10"
+          >
+            VOLTAGE
+          </motion.h1>
+          <motion.div 
+            animate={{ 
+              opacity: [0.2, 0.5, 0.2],
+              scale: [1, 1.02, 1]
+            }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute inset-0 text-7xl sm:text-8xl md:text-9xl lg:text-[180px] xl:text-[240px] font-black leading-none tracking-[-0.06em] text-purple-500 uppercase italic blur-3xl z-0 pointer-events-none select-none"
+          >
+            VOLTAGE
+          </motion.div>
         </div>
-      </div>
 
-      <div
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
-        style={{ opacity: opacity * 0.8 }}
-      >
-        <span className="text-xs font-medium tracking-widest uppercase text-white/60">
-          Scroll to explore
-        </span>
-        <div className="w-5 h-9 rounded-full border border-white flex justify-center pt-2">
-          <div className="w-1 h-2.5 bg-white rounded-full animate-bounce" />
-        </div>
-      </div>
+        {/* Tagline & Info */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.8 }}
+          className="flex flex-col items-center gap-8"
+        >
+          <div className="flex flex-col gap-2">
+            <p className="text-xl md:text-3xl font-black text-white italic tracking-tight uppercase">
+              {t("tagline")}
+            </p>
+            <div className="flex items-center gap-4 justify-center">
+              <div className="h-px w-8 bg-purple-500/50" />
+              <p className="text-sm md:text-lg font-bold text-white/40 uppercase italic tracking-widest">
+                {t("info")}
+              </p>
+              <div className="h-px w-8 bg-purple-500/50" />
+            </div>
+          </div>
 
-      <div
-        className="absolute inset-0 opacity-[0.015] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(var(--white) 1px, transparent 1px), linear-gradient(90deg, var(--white) 1px, transparent 1px)`,
-          backgroundSize: "100px 100px",
-        }}
-      />
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 mt-8 w-full sm:w-auto">
+            <Link href="#tickets" className="w-full sm:w-auto">
+              <Button className="w-full sm:w-72 h-20 bg-white text-black rounded-none font-black uppercase tracking-[0.2em] text-xs hover:bg-purple-500 transition-colors group relative overflow-hidden active:scale-95">
+                <span className="relative z-10">{t("buyPass")}</span>
+                <div className="absolute inset-0 bg-purple-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              </Button>
+            </Link>
+            <Link href="#lineup" className="w-full sm:w-auto">
+              <Button className="w-full sm:w-72 h-20 bg-transparent border border-white/10 text-white rounded-none font-black uppercase tracking-[0.2em] text-xs hover:bg-white hover:text-black transition-all active:scale-95">
+                {t("viewLineup")}
+              </Button>
+            </Link>
+          </div>
+        </motion.div>
+      </motion.div>
+
+      {/* Decorative Accents */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20 border-[40px] border-white/5" />
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-30">
+        <div className="w-px h-16 bg-gradient-to-b from-white to-transparent" />
+      </div>
     </section>
   );
 }

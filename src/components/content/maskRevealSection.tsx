@@ -3,9 +3,11 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
+import { useTranslations } from "next-intl";
 //#endregion
 
 export default function MaskRevealSection() {
+  const t = useTranslations("MaskReveal");
   //#region useRefs
   const containerRef = useRef<HTMLDivElement>(null);
   //#endregion
@@ -54,11 +56,11 @@ export default function MaskRevealSection() {
           className="relative z-10 text-center px-6"
         >
           <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-background tracking-tight">
-            Frame the Feeling
+            {t("title")}
           </h2>
 
           <p className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-white">
-            A night defined by connection, music, and energy.
+            {t("description")}
           </p>
         </motion.div>
       </div>

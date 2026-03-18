@@ -1,60 +1,57 @@
 "use client";
-//#region Imports
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-//#endregion
 
-//#region Constants
-const stats = [
-  { number: 10, suffix: "", label: "Featuring internationally acclaimed DJs" },
-  { number: 8, suffix: "Hours", label: "Non-stop music from dusk till dawn" },
-  {
-    number: 5000,
-    suffix: "+",
-    label: "Experience the energy of a full-capacity rave",
-  },
-  {
-    number: 3,
-    suffix: "Stages",
-    label: "Multiple areas to dance, relax, and socialize",
-  },
-];
-//#endregion
+import { motion, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { Lightning, Pulse, Users, Globe } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 
 export default function NumbersSection() {
-  //#region useRefs
+  const t = useTranslations("Numbers");
   const containerRef = useRef<HTMLDivElement>(null);
-  //#endregion
+  const isInView = useInView(containerRef, { once: true, margin: "-10%" });
 
-  //#region Hooks
-  const isInView = useInView(containerRef, { once: true, margin: "-20%" });
-  //#endregion
+  const stats = [
+    { number: 10, suffix: "", label: t("sonic"), icon: Pulse },
+    { number: 8, suffix: "HRS", label: t("flow"), icon: Lightning },
+    { number: 5000, suffix: "+", label: t("units"), icon: Users },
+    { number: 3, suffix: "ZONES", label: t("sectors"), icon: Globe },
+  ];
 
   return (
-    <section ref={containerRef} className="pt-48 bg-background" id="numbers">
-      <div className="container mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+    <section ref={containerRef} className="py-24 bg-black border-y border-white/5" id="numbers">
+      <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-white/5 bg-[#0a0a0a]">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              className="text-center"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: i * 0.1 }}
+              className="p-12 flex flex-col items-center md:items-start text-center md:text-left border-white/5 border-b md:border-b-0 md:border-r last:border-0 group hover:bg-white/[0.02] transition-colors"
             >
-              <div className="font-serif text-5xl font-light text-foreground">
-                <Counter
-                  from={0}
-                  to={stat.number}
-                  duration={2}
-                  delay={i * 0.15}
-                  inView={isInView}
-                />
-                <span className="ml-2">{stat.suffix}</span>
+              <div className="mb-12 text-white/20 group-hover:text-purple-500 transition-colors duration-500">
+                <stat.icon size={32} weight="duotone" />
               </div>
-              <p className="mt-4 font-mono text-xs tracking-[0.2em] uppercase text-muted-foreground">
-                {stat.label}
-              </p>
+              
+              <div className="flex items-baseline gap-2 mb-4">
+                <span className="text-6xl md:text-7xl font-black text-white italic tracking-tighter">
+                  <Counter
+                    from={0}
+                    to={stat.number}
+                    duration={2}
+                    delay={i * 0.1}
+                    inView={isInView}
+                  />
+                  {stat.suffix}
+                </span>
+              </div>
+              
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-px bg-purple-500/40" />
+                <p className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase">
+                  {stat.label}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -63,88 +60,33 @@ export default function NumbersSection() {
   );
 }
 
-function Counter({
-  from,
-  to,
-  duration,
-  delay,
-  inView,
-}: {
-  from: number;
-  to: number;
-  duration: number;
-  delay: number;
-  inView: boolean;
-}) {
-  const ref = useRef<HTMLSpanElement>(null);
+function Counter({ from, to, duration, delay, inView }: { from: number; to: number; duration: number; delay: number; inView: boolean }) {
+  const countRef = useRef<HTMLSpanElement>(null);
 
-  return (
-    <motion.span
-      ref={ref}
-      initial={{ opacity: 0 }}
-      animate={inView ? { opacity: 1 } : {}}
-      transition={{ delay }}
-    >
-      <motion.span
-        initial={{ opacity: 1 }}
-        animate={inView ? { opacity: 1 } : {}}
-      >
-        {inView ? (
-          <AnimatedNumber value={to} duration={duration} delay={delay} />
-        ) : (
-          from
-        )}
-      </motion.span>
-    </motion.span>
-  );
-}
+  useEffect(() => {
+    if (inView && countRef.current) {
+      let startTimestamp: number | null = null;
+      const step = (timestamp: number) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
+        
+        if (countRef.current) {
+          const currentCount = Math.floor(progress * (to - from) + from);
+          countRef.current.textContent = currentCount.toLocaleString();
+        }
 
-function AnimatedNumber({
-  value,
-  duration,
-  delay,
-}: {
-  value: number;
-  duration: number;
-  delay: number;
-}) {
-  const ref = useRef<HTMLSpanElement>(null);
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
 
-  return (
-    <motion.span
-      ref={ref}
-      initial={{ opacity: 1 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay }}
-    >
-      <motion.span
-        initial={{ opacity: 1 }}
-        animate={{
-          opacity: 1,
-        }}
-        transition={{ duration: duration + delay }}
-        onAnimationStart={() => {
-          if (ref.current) {
-            let start = 0;
-            const increment = value / (duration * 60);
-            const animate = () => {
-              start += increment;
-              if (ref.current) {
-                ref.current.textContent = Math.min(
-                  Math.floor(start),
-                  value
-                ).toString();
-              }
-              if (start < value) {
-                requestAnimationFrame(animate);
-              }
-            };
-            setTimeout(() => animate(), delay * 1000);
-          }
-        }}
-      >
-        <span ref={ref}>0</span>
-      </motion.span>
-    </motion.span>
-  );
+      const timeoutId = setTimeout(() => {
+        window.requestAnimationFrame(step);
+      }, delay * 1000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [inView, from, to, duration, delay]);
+
+  return <span ref={countRef}>{from}</span>;
 }

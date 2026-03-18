@@ -1,134 +1,97 @@
 "use client";
-//#region Imports
-import { cn } from "@heroui/react";
-import { StarIcon } from "@phosphor-icons/react";
-import type React from "react";
-import {
-  useScrollAnimation,
-  useScrollProgress,
-} from "@/hooks/use-scroll-animation";
-import Image from "next/image";
-//#endregion
 
-//#region Constants
-const testimonials = [
-  {
-    quote:
-      "Voltage is hands down the best electronic music festival I've ever attended!",
-    author: "Jessica Johnson",
-    role: "Music Influencer",
-    avatar: "/content/images/jessicaJohnson.png",
-    rating: 5,
-  },
-  {
-    quote:
-      "The energy, the lights, the music — it all felt like a dream come true.",
-    author: "Sofia Lee",
-    role: "YouTube DJ Channel",
-    avatar: "/content/images/sofiaLee.png",
-    rating: 5,
-  },
-  {
-    quote: "Every beat, every drop, every moment was perfect.",
-    author: "Marco Silva",
-    role: "Festival Enthusiast",
-    avatar: "/content/images/marcoSilva.png",
-    rating: 5,
-  },
-];
-//#endregion
+import { cn } from "@heroui/react";
+import { Quotes, Lightning } from "@phosphor-icons/react";
+import React from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export function TestimonialsSection() {
-  //#region Hooks
-  const { ref, progress } = useScrollProgress();
-  //#endregion
+  const t = useTranslations("Testimonials");
+
+  const testimonials = [
+    {
+      quote: t("items.log1.quote"),
+      author: "JESSICA JOHNSON",
+      role: t("items.log1.role"),
+      avatar: "/content/images/jessicaJohnson.png",
+      id: "LOG_01",
+    },
+    {
+      quote: t("items.log2.quote"),
+      author: "SOFIA LEE",
+      role: t("items.log2.role"),
+      avatar: "/content/images/sofiaLee.png",
+      id: "LOG_02",
+    },
+    {
+      quote: t("items.log3.quote"),
+      author: "MARCO SILVA",
+      role: t("items.log3.role"),
+      avatar: "/content/images/marcoSilva.png",
+      id: "LOG_03",
+    },
+  ];
 
   return (
-    <section
-      ref={ref as React.RefObject<HTMLElement>}
-      className="py-32 lg:py-40 bg-background overflow-hidden"
-      id="testimonials"
-    >
-      <div className="px-6">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 mb-6">
-            <div className="w-8 h-px bg-foreground/20" />
-            <span className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground">
-              Testimonials
-            </span>
-            <div className="w-8 h-px bg-foreground/20" />
+    <section className="py-24 md:py-40 bg-black overflow-hidden" id="testimonials">
+      <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
+        <div className="flex flex-col md:flex-row items-end justify-between gap-12 mb-24">
+          <div className="flex flex-col">
+            <div className="flex items-center gap-4 mb-6">
+              <Lightning weight="fill" className="text-purple-500" size={24} />
+              <span className="text-xs font-black tracking-[0.5em] text-white/40 uppercase">
+                {t("protocol")}
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-8xl font-black tracking-[-0.04em] text-white uppercase italic leading-none">
+              {t("title")} <br />
+              <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.4)' }}>{t("titleSpan")}</span>
+            </h2>
           </div>
-
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-5">
-            Loved by the crowd —{" "}
-            <span className="font-serif italic font-normal text-muted-foreground">
-              real voices, real moments
-            </span>
-          </h2>
+          <p className="text-lg md:text-xl font-bold tracking-tight text-white/30 max-w-sm uppercase italic">
+            {t("description")}
+          </p>
         </div>
 
-        <div className="relative">
-          <div
-            className="flex gap-6 lg:gap-8"
-            style={{
-              transform: `translateX(${-progress * 25}%)`,
-              transition: "transform 0.15s ease-out",
-            }}
-          >
-            {[...testimonials, ...testimonials].map((testimonial, i) => (
-              <TestimonialCard key={i} testimonial={testimonial} index={i} />
-            ))}
-          </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {testimonials.map((item, i) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="group relative p-10 bg-[#0a0a0a] border border-white/5 flex flex-col items-start transition-all duration-500 hover:border-purple-500/30"
+            >
+              <div className="flex justify-between items-center w-full mb-12">
+                <span className="text-[10px] font-black text-purple-500 tracking-[0.4em] uppercase">{item.id}</span>
+                <Quotes size={32} weight="fill" className="text-white/5 group-hover:text-purple-500/20 transition-colors" />
+              </div>
+
+              <blockquote className="text-xl md:text-2xl font-black tracking-tight text-white uppercase italic leading-tight mb-16 grow">
+                &quot;{item.quote}&quot;
+              </blockquote>
+
+              <div className="flex items-center gap-6 pt-8 border-t border-white/5 w-full">
+                <div className="relative w-14 h-14 grayscale group-hover:grayscale-0 transition-all duration-700 overflow-hidden border border-white/10">
+                  <Image
+                    src={item.avatar}
+                    alt={item.author}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-sm font-black text-white tracking-tighter uppercase italic">{item.author}</span>
+                  <span className="text-[10px] font-bold text-white/30 tracking-[0.2em] uppercase">{item.role}</span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
-  );
-}
-
-function TestimonialCard({
-  testimonial,
-}: {
-  testimonial: (typeof testimonials)[0];
-  index: number;
-}) {
-  const { ref, isVisible } = useScrollAnimation(0.2);
-
-  return (
-    <div
-      ref={ref as React.RefObject<HTMLDivElement>}
-      className={cn(
-        "shrink-0 w-85 md:w-100 p-8 lg:p-10 rounded-3xl border bg-card shadow-premium transition-all duration-700 hover:shadow-premium-lg hover:-translate-y-1",
-        isVisible ? "opacity-100" : "opacity-0"
-      )}
-    >
-      <div className="flex gap-1 mb-6">
-        {Array.from({ length: testimonial.rating }).map((_, i) => (
-          <StarIcon
-            weight="fill"
-            key={i}
-            className="w-4 h-4 fill-amber-400 text-amber-400"
-          />
-        ))}
-      </div>
-
-      <blockquote className="text-foreground text-lg lg:text-xl leading-relaxed mb-8 font-light">
-        "{testimonial.quote}"
-      </blockquote>
-
-      <div className="flex items-center gap-4">
-        <Image
-          src={testimonial.avatar || "/placeholder.svg"}
-          alt={testimonial.author}
-          className="w-12 h-12 rounded-full object-cover ring-2 ring-background shadow-sm"
-          width={0}
-          height={0}
-          sizes="100vw"
-        />
-        <div>
-          <p className="font-semibold text-foreground">{testimonial.author}</p>
-          <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-        </div>
-      </div>
-    </div>
   );
 }

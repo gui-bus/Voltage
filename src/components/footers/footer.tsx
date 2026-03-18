@@ -1,145 +1,134 @@
 "use client";
 
-//#region Imports
 import {
-  FacebookLogoIcon,
-  InstagramLogoIcon,
-  TwitterLogoIcon,
-  YoutubeLogoIcon,
+  FacebookLogo,
+  InstagramLogo,
+  TwitterLogo,
+  YoutubeLogo,
+  Lightning,
+  ArrowUp,
 } from "@phosphor-icons/react";
-import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
-//#endregion
+import { useTranslations } from "next-intl";
 
-//#region Constants
 const social = [
-  { name: "Instagram", icon: InstagramLogoIcon, href: "#" },
-  { name: "Facebook", icon: FacebookLogoIcon, href: "#" },
-  { name: "Twitter", icon: TwitterLogoIcon, href: "#" },
-  { name: "YouTube", icon: YoutubeLogoIcon, href: "#" },
+  { name: "Instagram", icon: InstagramLogo, href: "#" },
+  { name: "Facebook", icon: FacebookLogo, href: "#" },
+  { name: "Twitter", icon: TwitterLogo, href: "#" },
+  { name: "YouTube", icon: YoutubeLogo, href: "#" },
 ];
-//#endregion
-
-//#region Animations
-const container = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const item: any = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
-//#endregion
 
 export function Footer() {
+  const t = useTranslations("Footer");
+
+  const links = {
+    internal: [
+      { label: t("navItems.lineup"), href: "#lineup" },
+      { label: t("navItems.experience"), href: "#experience" },
+      { label: t("navItems.tickets"), href: "#tickets" },
+      { label: t("navItems.faq"), href: "#faq" },
+    ],
+    legal: [
+      { label: t("privacy"), href: "#" },
+      { label: t("terms"), href: "#" },
+      { label: t("safety"), href: "#" },
+    ],
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer
-      className="relative overflow-hidden border-t border-border bg-background"
-      id="footer"
-    >
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
-      >
-        <motion.div
-          className="absolute -bottom-48 left-1/2 h-105 w-105 -translate-x-1/2 rounded-full bg-foreground/5 blur-[140px]"
-          animate={{ y: [0, -20, 0], opacity: [0.6, 0.9, 0.6] }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </motion.div>
+    <footer className="bg-black border-t border-white/5 relative overflow-hidden" id="footer">
+      {/* Background Accent */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
 
-      <div className="relative mx-auto max-w-7xl px-6 py-24">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-120px" }}
-          className="flex flex-col items-center text-center"
-        >
-          <motion.div variants={item}>
-            <Link href="/#hero">
-              <Image
-                src="/content/images/voltageBlack.png"
-                alt="Voltage Festival"
-                width={220}
-                height={0}
-                draggable={false}
-                priority
-              />
+      <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-24 md:py-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-8">
+          {/* Column 1: Brand */}
+          <div className="lg:col-span-1 flex flex-col items-start">
+            <Link href="/" className="flex items-center gap-4 mb-8 group">
+              <Lightning weight="fill" size={40} className="text-white group-hover:text-purple-500 transition-colors" />
+              <span className="text-3xl font-black tracking-tighter text-white uppercase italic">VOLTAGE</span>
             </Link>
-          </motion.div>
+            <p className="text-sm font-bold text-white/30 uppercase italic leading-relaxed max-w-xs mb-12">
+              {t("description")}
+            </p>
+            <div className="flex gap-4">
+              {social.map((s) => (
+                <a 
+                  key={s.name} 
+                  href={s.href} 
+                  className="w-10 h-10 flex items-center justify-center border border-white/10 text-white/40 hover:text-white hover:border-white/30 transition-all"
+                >
+                  <s.icon size={20} weight="duotone" />
+                </a>
+              ))}
+            </div>
+          </div>
 
-          <motion.p
-            variants={item}
-            className="mt-6 max-w-xl text-muted-foreground font-light leading-relaxed"
+          {/* Column 2: Navigation */}
+          <div className="flex flex-col">
+            <span className="text-[10px] font-black tracking-[0.4em] text-purple-500 uppercase mb-8 italic">{t("nav")}</span>
+            <nav className="flex flex-col gap-4">
+              {links.internal.map((link) => (
+                <Link 
+                  key={link.label} 
+                  href={link.href}
+                  className="text-lg font-black text-white/40 hover:text-white uppercase italic transition-colors w-fit"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Column 3: Legal */}
+          <div className="flex flex-col">
+            <span className="text-[10px] font-black tracking-[0.4em] text-white/20 uppercase mb-8 italic">{t("info")}</span>
+            <nav className="flex flex-col gap-4">
+              {links.legal.map((link) => (
+                <Link 
+                  key={link.label} 
+                  href={link.href}
+                  className="text-xs font-bold text-white/30 hover:text-white uppercase italic transition-colors w-fit"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Column 4: Newsletter/Action */}
+          <div className="flex flex-col">
+            <span className="text-[10px] font-black tracking-[0.4em] text-white/20 uppercase mb-8 italic">{t("conn")}</span>
+            <div className="p-8 border border-white/5 bg-[#0a0a0a] relative group">
+              <p className="text-sm font-bold text-white/60 uppercase italic mb-6">{t("join")}</p>
+              <button className="w-full h-12 bg-white text-black font-black text-[10px] tracking-[0.3em] uppercase hover:bg-purple-500 transition-colors">
+                {t("connect")}
+              </button>
+              <div className="absolute -top-1 -left-1 w-2 h-2 bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex items-center gap-8">
+            <span className="text-[10px] font-black text-white/20 tracking-widest uppercase italic">© 2026 VOLTAGE_FESTIVAL</span>
+          </div>
+
+          <button 
+            onClick={scrollToTop}
+            className="flex items-center gap-4 group"
           >
-            An immersive electronic music experience where sound, light and
-            movement collide.
-          </motion.p>
-
-          <motion.div variants={item} className="mt-10 flex gap-5">
-            {social.map((item, index) => (
-              <motion.a
-                key={item.name}
-                href={item.href}
-                aria-label={item.name}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  delay: 0.4 + index * 0.08,
-                  duration: 0.6,
-                  ease: "easeOut",
-                }}
-                whileHover={{
-                  scale: 1.15,
-                  y: -4,
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <item.icon weight="duotone" className="h-5 w-5" />
-              </motion.a>
-            ))}
-          </motion.div>
-
-          <motion.p
-            variants={item}
-            className="mt-6 text-sm text-muted-foreground"
-          >
-            © 2026 Voltage Festival — All Rights Reserved | Designed by{" "}
-            <Link
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.linkedin.com/in/gui-bus/"
-              className="text-primary hover:underline transition-all duration-300"
-            >
-              guibus.dev
-            </Link>
-          </motion.p>
-        </motion.div>
+            <span className="text-[10px] font-black text-white/40 group-hover:text-white tracking-[0.3em] uppercase transition-colors italic">{t("top")}</span>
+            <div className="w-10 h-10 flex items-center justify-center border border-white/10 group-hover:border-white/30 group-hover:bg-white/5 transition-all">
+              <ArrowUp size={16} weight="bold" className="text-white" />
+            </div>
+          </button>
+        </div>
       </div>
     </footer>
   );

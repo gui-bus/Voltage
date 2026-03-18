@@ -1,139 +1,103 @@
 "use client";
-//#region Imports
+
 import { cn } from "@heroui/react";
 import {
-  ShieldCheckIcon,
-  UsersIcon,
-  SignOutIcon,
-  HeartbeatIcon,
+  ShieldCheck,
+  Users,
+  SignOut,
+  Heartbeat,
+  Lightning,
 } from "@phosphor-icons/react";
-import type React from "react";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-//#endregion
-
-//#region Constants
-const badges = [
-  {
-    icon: HeartbeatIcon,
-    title: "Medical Support",
-    description: "On-site medical team with rapid response units",
-  },
-  {
-    icon: UsersIcon,
-    title: "Trained Security",
-    description: "Professional staff monitoring crowd flow and access",
-  },
-  {
-    icon: SignOutIcon,
-    title: "Emergency Routes",
-    description: "Well-lit, clearly marked exits across all areas",
-  },
-  {
-    icon: ShieldCheckIcon,
-    title: "Safe Environment",
-    description: "Controlled access and continuous venue monitoring",
-  },
-];
-
-const securityFeatures = [
-  "On-site medical teams with rapid emergency response",
-  "Highly trained security staff across all zones",
-  "Clearly marked emergency exits and evacuation routes",
-  "Controlled access points and real-time crowd monitoring",
-];
-//#endregion
+import React from "react";
+import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export function TrustSection() {
-  const { ref, isVisible } = useScrollAnimation(0.2);
+  const t = useTranslations("Trust");
+
+  const safetyProtocols = [
+    {
+      id: "01",
+      icon: Heartbeat,
+      title: t("items.medical.title"),
+      desc: t("items.medical.desc"),
+    },
+    {
+      id: "02",
+      icon: Users,
+      title: t("items.security.title"),
+      desc: t("items.security.desc"),
+    },
+    {
+      id: "03",
+      icon: SignOut,
+      title: t("items.extraction.title"),
+      desc: t("items.extraction.desc"),
+    },
+    {
+      id: "04",
+      icon: ShieldCheck,
+      title: t("items.venue.title"),
+      desc: t("items.venue.desc"),
+    },
+  ];
 
   return (
-    <section
-      ref={ref as React.RefObject<HTMLElement>}
-      className="py-32 bg-default my-20"
-      id="security"
-    >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          <div
-            className={cn(
-              "transition-all duration-1000",
-              isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-12"
-            )}
-          >
-            <div className="inline-flex items-center gap-2 mb-6">
-              <div className="w-8 h-px bg-foreground/20" />
-              <span className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground">
-                Security
+    <section className="py-24 md:py-40 bg-black border-y border-white/5" id="security">
+      <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-16 mb-24">
+          <div className="flex flex-col max-w-2xl">
+            <div className="flex items-center gap-4 mb-6">
+              <Lightning weight="fill" className="text-purple-500" size={24} />
+              <span className="text-xs font-black tracking-[0.5em] text-white/40 uppercase">
+                {t("protocol")}
               </span>
             </div>
-
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-6">
-              Feel safe.{" "}
-              <span className="font-serif italic font-normal text-muted-foreground">
-                Stay immersed.
-              </span>
+            <h2 className="text-5xl md:text-7xl font-black tracking-[-0.04em] text-white uppercase italic leading-none">
+              {t("title")} <br />
+              <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.4)' }}>{t("titleSpan")}</span>
             </h2>
-
-            <p className="text-lg text-muted-foreground mb-10 leading-relaxed font-light max-w-lg">
-              Every detail at Voltage is designed to ensure your safety —
-              without breaking the flow of the experience.
+          </div>
+          
+          <div className="flex flex-col max-w-md">
+            <p className="text-lg md:text-xl font-bold tracking-tight text-white/30 uppercase italic leading-relaxed mb-8">
+              {t("description")}
             </p>
-
-            <div className="space-y-5">
-              {securityFeatures.map((item, i) => (
-                <div
-                  key={i}
-                  className={cn(
-                    "flex items-center gap-4 transition-all duration-700",
-                    isVisible
-                      ? "opacity-100 translate-x-0"
-                      : "opacity-0 -translate-x-6"
-                  )}
-                  style={{ transitionDelay: `${400 + i * 100}ms` }}
-                >
-                  <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                    <div className="w-2 h-2 rounded-full bg-accent" />
-                  </div>
-                  <span className="text-foreground font-light">{item}</span>
-                </div>
-              ))}
-            </div>
+            <div className="h-px w-24 bg-purple-500" />
           </div>
+        </div>
 
-          <div
-            className={cn(
-              "grid grid-cols-2 gap-5 transition-all duration-1000",
-              isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-12"
-            )}
-          >
-            {badges.map((badge, i) => {
-              const Icon = badge.icon;
-              return (
-                <div
-                  key={badge.title}
-                  className={cn(
-                    "p-8 rounded-3xl border bg-card shadow-premium text-center transition-all duration-700 hover:shadow-premium-lg hover:-translate-y-1 group",
-                    isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
-                  )}
-                  style={{ transitionDelay: `${500 + i * 100}ms` }}
-                >
-                  <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-500">
-                    <Icon weight="duotone" className="w-8 h-8 text-accent" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-1 tracking-tight">
-                    {badge.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {badge.description}
-                  </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {safetyProtocols.map((protocol, i) => (
+            <motion.div
+              key={protocol.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="group relative p-8 bg-[#0a0a0a] border border-white/5 flex flex-col items-start transition-all duration-500 hover:border-purple-500/30"
+            >
+              <div className="flex justify-between items-start w-full mb-12">
+                <div className="p-3 bg-white/5 text-purple-500 group-hover:bg-purple-500 group-hover:text-black transition-all duration-500">
+                  <protocol.icon size={32} weight="duotone" />
                 </div>
-              );
-            })}
-          </div>
+                <span className="text-2xl font-black text-white/10 group-hover:text-purple-500/20 transition-colors">
+                  P.{protocol.id}
+                </span>
+              </div>
+
+              <h3 className="text-2xl font-black tracking-tighter text-white uppercase italic mb-4">
+                {protocol.title}
+              </h3>
+              
+              <p className="text-sm font-bold tracking-tight text-white/40 uppercase italic leading-relaxed">
+                {protocol.desc}
+              </p>
+
+              {/* Decorative side bar */}
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-0 group-hover:h-1/2 bg-purple-500 transition-all duration-500" />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

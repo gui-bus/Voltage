@@ -2,9 +2,11 @@
 //#region Imports
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { useTranslations } from "next-intl";
 //#endregion
 
 export default function QuoteSection() {
+  const t = useTranslations("Quote");
   //#region useRefs
   const containerRef = useRef<HTMLDivElement>(null);
   //#endregion
@@ -44,12 +46,12 @@ export default function QuoteSection() {
           </motion.span>
 
           <blockquote className="font-serif text-3xl md:text-5xl lg:text-6xl font-light leading-tight max-w-5xl mx-auto -mt-16 md:-mt-24">
-            The night belongs to those who feel the music.
+            {t("text")}
           </blockquote>
 
           <footer className="mt-12">
             <p className="font-mono text-sm tracking-[0.2em] uppercase text-white/50">
-              — Nina Kraviz — DJ & Producer
+              {t("author")}
             </p>
           </footer>
         </motion.div>

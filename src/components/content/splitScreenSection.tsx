@@ -1,102 +1,122 @@
 "use client";
-//#region Imports
+
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
-//#endregion
+import { Lightning, Cpu, ChartBar, Waves } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 
 export default function SplitScreenSection() {
-  //#region useRefs
+  const t = useTranslations("SplitScreen");
   const containerRef = useRef<HTMLDivElement>(null);
-  //#endregion
-
-  //#region Hooks
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   });
 
-  const leftY = useTransform(scrollYProgress, [0, 1], ["30%", "-30%"]);
-  const rightY = useTransform(scrollYProgress, [0, 1], ["-30%", "30%"]);
-  const centerScale = useTransform(
-    scrollYProgress,
-    [0.2, 0.5, 0.8],
-    [0.8, 1, 0.8]
-  );
-  const centerOpacity = useTransform(
-    scrollYProgress,
-    [0.2, 0.5, 0.8],
-    [0, 1, 0]
-  );
-  //#endregion
+  const imageScale = useTransform(scrollYProgress, [0, 0.5], [1.1, 1]);
+  const textY = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
+  const dividerHeight = useTransform(scrollYProgress, [0, 0.4], ["0%", "100%"]);
+
+  const specs = [
+    { icon: <Waves size={20} />, label: t("specs.audio"), value: t("specs.audioValue") },
+    { icon: <Cpu size={20} />, label: t("specs.visuals"), value: t("specs.visualsValue") },
+    { icon: <ChartBar size={20} />, label: t("specs.energy"), value: t("specs.energyValue") },
+  ];
 
   return (
     <section
       ref={containerRef}
-      className="relative py-32 overflow-hidden"
+      className="relative h-svh w-full bg-black flex flex-col lg:flex-row overflow-hidden border-y border-white/5"
       id="experience"
     >
-      <div className="px-5">
-        <div className="grid lg:grid-cols-3 gap-8 items-center">
-          <motion.div style={{ y: leftY }} className="space-y-8">
-            <div className="aspect-square rounded-2xl overflow-hidden">
-              <Image
-                src="/content/images/DJ_01.webp"
-                alt="DJ 01"
-                className="w-full h-full object-cover"
-                width={0}
-                height={0}
-                sizes="100vw"
-              />
-            </div>
-            <div className="aspect-video rounded-2xl overflow-hidden">
-              <Image
-                src="/content/images/DJ_04.webp"
-                alt="DJ 04"
-                className="w-full h-full object-cover"
-                width={0}
-                height={0}
-                sizes="100vw"
-              />
-            </div>
-          </motion.div>
+      {/* Left Side: Immersive Visual */}
+      <div className="relative w-full lg:w-1/2 h-[60svh] lg:h-svh overflow-hidden group">
+        <motion.div style={{ scale: imageScale }} className="w-full h-full">
+          <Image
+            src="/content/images/DJ_01.webp"
+            alt="Voltage Experience"
+            fill
+            className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 opacity-60"
+          />
+        </motion.div>
+        
+        {/* Overlay Gradients */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent lg:hidden" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+        
+        {/* Corner Accents */}
+        <div className="absolute top-12 left-12 flex flex-col gap-1">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" />
+            <span className="text-[10px] font-black tracking-[0.3em] text-white/40 uppercase">{t("sensoryInput")}</span>
+          </div>
+          <span className="text-xs font-black text-white tracking-widest uppercase">{t("liveFeed")}</span>
+        </div>
 
-          <motion.div
-            style={{ scale: centerScale, opacity: centerOpacity }}
-            className="text-center lg:col-span-1"
-          >
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-tight">
-              Feel the Pulse of the Night
-            </h2>
-            <p className="mt-6 font-light max-w-md mx-auto">
-              Voltage brings the world’s top DJs under one roof, delivering an
-              unforgettable electronic music experience filled with lights,
-              beats, and energy.
-            </p>
-          </motion.div>
+        {/* Floating Spec Box */}
+        <div className="absolute bottom-12 right-12 hidden xl:block p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-sm">
+          <div className="flex flex-col gap-4">
+            {specs.map((spec, i) => (
+              <div key={i} className="flex items-center gap-4 group/item">
+                <div className="text-purple-500 group-hover/item:scale-110 transition-transform">
+                  {spec.icon}
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[8px] font-black text-white/30 tracking-[0.2em] uppercase">{spec.label}</span>
+                  <span className="text-[10px] font-black text-white tracking-widest uppercase">{spec.value}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-          <motion.div style={{ y: rightY }} className="space-y-8">
-            <div className="aspect-video rounded-2xl overflow-hidden">
-              <Image
-                src="/content/images/DJ_03.webp"
-                alt="DJ 03"
-                className="w-full h-full object-cover"
-                width={0}
-                height={0}
-                sizes="100vw"
-              />
+      {/* Vertical Divider */}
+      <motion.div 
+        style={{ height: dividerHeight }}
+        className="absolute left-1/2 top-0 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent hidden lg:block z-20"
+      />
+
+      {/* Right Side: Technical Content */}
+      <div className="w-full lg:w-1/2 min-h-[60svh] lg:h-svh flex flex-col justify-center px-6 md:px-12 lg:px-24 py-20 relative bg-[#080808]">
+        {/* Background Grid Accent */}
+        <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
+             style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+
+        <motion.div style={{ y: textY }} className="relative z-10 flex flex-col items-start">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-12 h-px bg-purple-500" />
+            <span className="text-xs font-black tracking-[0.5em] text-purple-500 uppercase">
+              {t("architecture")}
+            </span>
+          </div>
+
+          <h2 className="text-5xl md:text-7xl xl:text-8xl font-black tracking-[-0.06em] text-white uppercase italic leading-[0.9] mb-12">
+            {t("beyondSound")} <br />
+            <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.3)' }}>{t("beyondSoundSpan")}</span>
+          </h2>
+
+          <p className="text-lg md:text-xl text-white/50 font-bold tracking-tight max-w-xl leading-relaxed mb-16 uppercase italic">
+            {t("description")}
+          </p>
+
+          <div className="grid grid-cols-2 gap-x-12 gap-y-8 w-full max-w-md">
+            <div className="flex flex-col gap-2">
+              <span className="text-[10px] font-black text-white/20 tracking-[0.3em] uppercase underline underline-offset-8 decoration-purple-500/50">{t("capacity")}</span>
+              <span className="text-2xl font-black text-white tracking-tighter uppercase italic">{t("capacityValue")}</span>
             </div>
-            <div className="aspect-square rounded-2xl overflow-hidden">
-              <Image
-                src="/content/images/DJ_02.webp"
-                alt="DJ 02"
-                className="w-full h-full object-cover"
-                width={0}
-                height={0}
-                sizes="100vw"
-              />
+            <div className="flex flex-col gap-2">
+              <span className="text-[10px] font-black text-white/20 tracking-[0.3em] uppercase underline underline-offset-8 decoration-purple-500/50">{t("duration")}</span>
+              <span className="text-2xl font-black text-white tracking-tighter uppercase italic">{t("durationValue")}</span>
             </div>
-          </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Decorative lightning icon at bottom */}
+        <div className="absolute bottom-12 right-12 opacity-5">
+          <Lightning size={120} weight="fill" className="text-white" />
         </div>
       </div>
     </section>

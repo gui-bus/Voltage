@@ -1,146 +1,107 @@
 "use client";
-import { ConfettiIcon, PathIcon } from "@phosphor-icons/react";
-//#region Imports
+
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-//#endregion
-
-//#region Constants
-const milestones = [
-  {
-    year: "2023",
-    title: "Voltage: Genesis",
-    description:
-      "An indoor rave that ignited the movement, gathering over 3,000 attendees and 6 world-class DJs for the very first spark.",
-  },
-  {
-    year: "2024",
-    title: "Voltage: Neon Pulse",
-    description:
-      "The edition that redefined immersion, introducing neon light ecosystems and interactive stages that moved with the crowd.",
-  },
-  {
-    year: "2025",
-    title: "Voltage: Multiverse",
-    description:
-      "A massive leap forward, expanding to four stages and unveiling VR-powered visuals that blurred the line between reality and sound.",
-  },
-  {
-    year: "2026",
-    title: "Voltage: Full Charge",
-    description:
-      "The biggest edition yet, uniting global headliners, cutting-edge light technology, and a fully immersive indoor rave experience designed to push sound and visuals to the next level.",
-  },
-];
-//#endregion
+import { Lightning, Calendar } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 
 export default function TimelineSection() {
-  //#region useRefs
+  const t = useTranslations("Timeline");
   const containerRef = useRef<HTMLDivElement>(null);
-  //#endregion
-
-  //#region Hooks
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   });
 
-  const lineHeight = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "100%"]);
-  //#endregion
+  const pathLength = useTransform(scrollYProgress, [0.2, 0.8], [0, 1]);
+
+  const milestones = [
+    {
+      year: "2023",
+      title: t("items.2023.title"),
+      desc: t("items.2023.desc"),
+      align: "left"
+    },
+    {
+      year: "2024",
+      title: t("items.2024.title"),
+      desc: t("items.2024.desc"),
+      align: "right"
+    },
+    {
+      year: "2025",
+      title: t("items.2025.title"),
+      desc: t("items.2025.desc"),
+      align: "left"
+    },
+    {
+      year: "2026",
+      title: t("items.2026.title"),
+      desc: t("items.2026.desc"),
+      align: "right"
+    },
+  ];
 
   return (
-    <section
-      ref={containerRef}
-      className="bg-background py-32 md:py-48"
-      id="timeline"
-    >
-      <div className="container mx-auto px-6 lg:px-12">
-        <div className="mb-20">
-          <div className="flex items-center gap-5 mb-4">
-            <ConfettiIcon size={32} weight="duotone" className="text-accent" />
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">
-              Our Journey
-            </p>
+    <section ref={containerRef} className="py-24 md:py-40 bg-black relative" id="timeline">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative">
+        <div className="mb-32 flex flex-col items-center text-center">
+          <div className="flex items-center gap-4 mb-6">
+            <Calendar weight="fill" className="text-purple-500" size={24} />
+            <span className="text-xs font-black tracking-[0.5em] text-white/40 uppercase">{t("protocol")}</span>
           </div>
-
-          <h2 className="font-serif text-4xl font-light tracking-tight text-foreground md:text-6xl"></h2>
-
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-5">
-            Past Events{" "}
-            <span className="font-serif italic font-normal text-muted-foreground">
-              History
-            </span>
+          <h2 className="text-5xl md:text-8xl font-black tracking-[-0.04em] text-white uppercase italic leading-none mb-6">
+            {t("title")} <br />
+            <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.4)' }}>{t("titleSpan")}</span>
           </h2>
+          <div className="w-24 h-px bg-purple-500/40 mt-8" />
         </div>
 
-        <div className="relative">
-          <div className="absolute left-4 top-0 bottom-0 w-px bg-border md:left-1/2">
-            <motion.div
-              style={{ height: lineHeight }}
-              className="origin-top bg-accent w-full"
-            />
-          </div>
+        {/* Vertical Line for Tablet/Desktop */}
+        <div className="absolute left-1/2 top-[400px] bottom-0 w-px bg-white/5 hidden md:block">
+          <motion.div 
+            style={{ scaleY: pathLength }}
+            className="w-full h-full bg-gradient-to-b from-purple-500 to-transparent origin-top"
+          />
+        </div>
 
-          <div className="space-y-16 md:space-y-24">
-            {milestones.map((milestone, index) => (
-              <div key={milestone.year} className="relative">
-                <div className="absolute left-4 md:left-1/2 top-2 h-4 w-4 -translate-x-1/2 rounded-full bg-accent border-4 border-background z-10" />
-
-                <TimelineItem
-                  milestone={milestone}
-                  index={index}
-                  progress={scrollYProgress}
-                  isEven={index % 2 === 0}
-                />
+        <div className="space-y-32">
+          {milestones.map((item, i) => (
+            <div key={item.year} className={`flex flex-col md:flex-row items-center gap-12 md:gap-0 relative ${item.align === 'right' ? 'md:flex-row-reverse' : ''}`}>
+              {/* Year Bubble */}
+              <div className="absolute left-1/2 top-0 -translate-x-1/2 hidden md:flex w-12 h-12 rounded-full bg-black border border-white/20 items-center justify-center z-10">
+                <div className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
               </div>
-            ))}
-          </div>
+
+              <motion.div 
+                initial={{ opacity: 0, x: item.align === 'left' ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className={`w-full md:w-1/2 ${item.align === 'left' ? 'md:pr-24 text-center md:text-right' : 'md:pl-24 text-center md:text-left'}`}
+              >
+                <span className="text-4xl md:text-6xl font-black text-white/10 tracking-tighter mb-4 block">
+                  {item.year}
+                </span>
+                <h3 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight italic mb-4">
+                  {item.title}
+                </h3>
+                <p className="text-lg font-bold text-white/30 uppercase tracking-tight italic max-w-md mx-auto md:mx-0">
+                  {item.desc}
+                </p>
+              </motion.div>
+
+              <div className="w-full md:w-1/2 pointer-events-none" />
+            </div>
+          ))}
         </div>
       </div>
+
+      {/* Background Accents */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-5 overflow-hidden">
+        <Lightning weight="fill" size={600} className="text-white absolute -top-40 -left-40 rotate-12" />
+        <Lightning weight="fill" size={600} className="text-white absolute -bottom-40 -right-40 -rotate-12" />
+      </div>
     </section>
-  );
-}
-
-function TimelineItem({
-  milestone,
-  index,
-  progress,
-  isEven,
-}: {
-  milestone: {
-    year: string;
-    title: string;
-    description: string;
-  };
-  index: number;
-  progress: ReturnType<typeof useScroll>["scrollYProgress"];
-  isEven: boolean;
-}) {
-  const start = 0.1 + index * 0.15;
-
-  const opacity = useTransform(progress, [start, start + 0.1], [0, 1]);
-  const x = useTransform(
-    progress,
-    [start, start + 0.1],
-    [isEven ? -30 : 30, 0]
-  );
-
-  return (
-    <motion.div
-      style={{ opacity, x }}
-      className={`relative pl-12 md:pl-0 md:w-1/2 ${
-        isEven ? "md:pr-16 md:text-right" : "md:ml-auto md:pl-16"
-      }`}
-    >
-      <span className="font-mono text-sm text-accent">{milestone.year}</span>
-
-      <h3 className="mt-1 uppercase font-serif text-2xl font-light text-foreground md:text-3xl">
-        {milestone.title}
-      </h3>
-
-      <p className="mt-2 font-light text-muted-foreground">
-        {milestone.description}
-      </p>
-    </motion.div>
   );
 }
