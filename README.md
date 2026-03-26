@@ -1,20 +1,17 @@
 # <p align="center">VOLTAGE</p>
 
 <p align="center">
-  <strong>Indoor Electronic Music Experience: Sinta o Pulso da Tecnologia.</strong>
-</p>
-
-<p align="center">
-  <a href="https://voltage.guibus.dev/"><img src="https://img.shields.io/badge/Live_Demo-VOLTAGE-ff0055?style=for-the-badge&logo=vercel" alt="Live Demo" /></a>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Next.js-16.1.1-black?style=flat-square&logo=next.js" alt="Next.js" />
-  <img src="https://img.shields.io/badge/React-19.2.3-blue?style=flat-square&logo=react" alt="React" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-v4.0.0-38B2AC?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" />
-  <img src="https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square&logo=typescript" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/next--intl-4.8.3-green?style=flat-square" alt="next-intl" />
-  <img src="https://img.shields.io/badge/Framer_Motion-12.24.11-ff69b4?style=flat-square&logo=framer" alt="Framer Motion" />
+  <img alt="React" height="60" width="60" src="https://github.com/gui-bus/TechIcons/blob/main/Dark/React.svg">
+  <img alt="NextJS" height="60" width="60" src="https://github.com/gui-bus/TechIcons/blob/main/Dark/NextJS.svg">
+  <img alt="Typescript" height="60" width="60" src="https://github.com/gui-bus/TechIcons/blob/main/Dark/Typescript.svg">
+  <img alt="Tailwind" height="60" width="60" src="https://github.com/gui-bus/TechIcons/blob/main/Dark/TailwindCSS.svg">
+  <img alt="Framer Motion" height="60" width="60" src="https://github.com/gui-bus/TechIcons/blob/main/Dark/Framer%20Motion.svg">
+  <img alt="Phosphor Icons" height="60" width="60" src="https://github.com/gui-bus/TechIcons/blob/main/Dark/Phosphor%20Icons.svg">
+  <img alt="Husky" height="60" width="60" src="https://github.com/gui-bus/TechIcons/blob/main/Dark/Husky.svg">
+  <img alt="Conventional Commits" height="60" width="60" src="https://github.com/gui-bus/TechIcons/blob/main/Dark/Conventional%20Commits.svg">
+  <img alt="Cursor" height="60" width="60" src="https://github.com/gui-bus/TechIcons/blob/main/Dark/Cursor.svg">
+  <img alt="Gemini" height="60" width="60" src="https://github.com/gui-bus/TechIcons/blob/main/Dark/Gemini.svg">
+  <img alt="Windsurf" height="60" width="60" src="https://github.com/gui-bus/TechIcons/blob/main/Dark/Windsurf.svg">
 </p>
 
 ---
@@ -58,46 +55,3 @@ O projeto utiliza o **next-intl** com uma estratégia de Clean URLs:
 ### Performance e Estilização
 - **Tailwind CSS v4:** Implementação da nova engine do Tailwind, aproveitando variáveis CSS nativas e maior performance em tempo de compilação.
 - **Framer Motion 12:** Orquestração complexa de animações de entrada, scroll progressivo e interações de hover para garantir 60fps constantes.
-- **HeroUI (NextUI) & Radix:** Componentes de interface modernos e acessíveis para manter a consistência visual e a rapidez no desenvolvimento.
-
----
-
-## 🏗️ Estrutura Arquitetural
-
-```text
-├── messages/             # Dicionários de tradução (en.json, pt.json)
-├── src/
-│   ├── app/
-│   │   └── [locale]/     # Next.js App Router (Layouts e Páginas localizadas)
-│   ├── components/       # Seções e Elementos de UI (Hero, Lineup, Pricing...)
-│   ├── hooks/            # Hooks customizados para scroll spy e animações
-│   ├── i18n/             # Configurações de request e roteamento de idiomas
-│   ├── lib/              # Configurações de animação (Framer Motion)
-│   └── proxy.ts          # Middleware de internacionalização (Clean URLs)
-└── next.config.ts        # Configuração Next.js com suporte a i18n e React Compiler
-```
-
----
-
-## 🧪 Engenharia de Qualidade
-
-A integridade do projeto é garantida por fluxos de validação contínuos:
-- **Total i18n Coverage:** Todas as strings são externalizadas, garantindo escalabilidade total para novos idiomas sem tocar no código.
-- **React Compiler Enabled:** Uso da nova tecnologia de compilação do React para otimização automática de re-renderizações.
-- **Responsive Architecture:** Design resiliente que escala de monitores ultra-wide até dispositivos mobile de baixa performance.
-
-Para rodar o projeto localmente:
-```bash
-pnpm install
-pnpm dev
-```
-
-Para validar o build:
-```bash
-pnpm build
-```
-
----
-<p align="center">
-  Designed with intent by <a href="https://www.linkedin.com/in/gui-bus/">guibus.dev</a> &bull; 2026
-</p>
